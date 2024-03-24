@@ -26,15 +26,7 @@ export class AppComponent implements AfterViewInit, OnDestroy{
         bodyTag.className = `${breakpoint}`;
     }
 
-    // subscribeToFirebaseAuthEvents() {
-    //     this.authSubscription = this.qAuthService.authState().subscribe(user => {
-    //         if (user) {
-    //             this.qAuthService.setIntervalForAutoRefreshingAuthToken();
-    //             this.qAuthService.me(true);
-    //         }
-    //     });
-    // }
-
+    
     ngOnInit() {
         document.documentElement.style.fontSize = '14px';
     }

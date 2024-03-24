@@ -6,8 +6,7 @@
       </a>
     </div>
     <div class="flex justify-content-center md:m-auto" style="min-height: 550px">
-      <auth-info-board></auth-info-board>
-      <div class="border-round-right-3xl md:col-4 col-12 m-0 shadow relative" style="min-width:375px">
+      <div class="border-round-3xl  col-12 m-0 shadow relative" style="min-width:375px">
         <div class="flex justify-content-end">
           <button pButton pRipple label="Demo Data" class="p-button-rounded blink absolute"
            (click)="showDemoData()"></button>
@@ -83,18 +82,8 @@
             </p-tabPanel>
           </p-tabView>
         </div>
-        <!-- <div class="flex justify-content-center m-0 p-0 gap-1">
-          <small>
-            <p class="m-0 p-0">Don't have an account?</p>
-          </small>
-        </div> -->
         <div id="recaptcha-container" class="vpb-4"> </div>
       </div>
-    </div>
-    <div class="layout-footer vmb-4">
-      <a class="cursor-pointer" (click)="routeService.navigateWithPreserve('')">
-        © HWIMS INC. 2023
-      </a>
     </div>
   </div>
 </section>

@@ -1,4 +1,4 @@
-import { lastValueFrom, of, delay, Observable } from "rxjs";
+import { lastValueFrom, of, delay } from "rxjs";
 import { UserType } from "src/app/consts/app.const";
 import { IUser } from "src/app/modules/q-auth/q-auth-model";
 import { getRolesByIds } from "./role-management/rolelist_data";
@@ -6,13 +6,12 @@ import { getWarehousesByIds } from "./warehouse-management/warehouse-data";
 
 const DUMMY_USER: any = {
   "id": 1,
-  "email": "super-admin@gmail.com",
-  "phone_number": "+919871548694",
-  "first_name": "Super",
-  "last_name": "Admin",
+  "email": "admin@gmail.com",
+  "phone_number": "+919992567918",
+  "first_name": "admin",
   "is_active": true,
   "password": "123456789",
-  "type": UserType.SUPER_ADMIN
+  "type": UserType.ADMIN
 };
 
 const DUMMY_USERS_KEY = 'dummy-users';

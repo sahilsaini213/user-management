@@ -21,8 +21,7 @@ export const routes: Route[] = [
         children: [
             { 
                 path: 'auth', 
-                loadChildren: () => import('./modules/q-auth/q-auth.module').then(m => m.QAuthModule),
-                // ...canActivate(redirectToDashboad)
+                loadChildren: () => import('./modules/q-auth/q-auth.module').then(m => m.QAuthModule)
             },
             { 
                 path: 'app',
@@ -31,22 +30,22 @@ export const routes: Route[] = [
                 data: { authGuardPipe: redirectToLogin, userTypes: [UserType.EMPLOYEE] }
             },
             { 
-                path: 'superadmin', 
+                path: 'admin', 
                 loadChildren: () => import('./pages/super-admin/super-admin.module').then(m => m.SuperAdminModule),
                 canActivate: [QAuthenticationGuard, QAuthorizeGuard],
-                data: { authGuardPipe: redirectToLogin, userTypes: [UserType.SUPER_ADMIN] }
+                data: { authGuardPipe: redirectToLogin, userTypes:[UserType.ADMIN]}
             },
-            { 
-                path: 'admin', 
-                loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
-                canActivate: [QAuthenticationGuard, QAuthorizeGuard],
-                data: { authGuardPipe: redirectToLogin, userTypes: [UserType.ADMIN] }
-            },
+            // { 
+            //     path: 'admin', 
+            //     loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
+            //     canActivate: [QAuthenticationGuard, QAuthorizeGuard],
+            //     data: { authGuardPipe: redirectToLogin, userTypes: [UserType.ADMIN] }
+            // },
             { 
                 path: 'personal', 
                 loadChildren: () => import('./pages/general/general.module').then(m => m.GeneralModule),
                 canActivate: [QAuthenticationGuard, QAuthorizeGuard],
-                data: { authGuardPipe: redirectToLogin, userTypes: [UserType.SUPER_ADMIN, UserType.ADMIN, UserType.EMPLOYEE] }
+                data: { authGuardPipe: redirectToLogin, userTypes: [UserType.ADMIN] }
             }
         ],
         canActivate: []

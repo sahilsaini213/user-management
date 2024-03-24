@@ -38,16 +38,7 @@ export class DemoAccountComponent implements OnInit {
     this.ref.close(user);
   }
 
-  getUserType(type) {
-    switch (type) {
-      case UserType.SUPER_ADMIN:
-        return 'Super Admin';
-      case UserType.ADMIN:
-        return 'Warehouse(s) Owner'
-      default:
-        return 'Warehouse Employee';
-    }
-  }
+
 
 }
 
