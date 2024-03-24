@@ -1,0 +1,80 @@
+@mixin spacing-utilities($factor) {
+   @for $i from 1 through 30 {
+
+      /* Paddings */
+      .vp-#{$i} {
+         padding: calc(#{$factor} * #{$i}rem) !important;
+      }
+
+      .vpy-#{$i} {
+         padding-top: calc(#{$factor} * #{$i}rem) !important;
+         padding-bottom: calc(#{$factor} * #{$i}rem) !important;
+      }
+
+      .vpx-#{$i} {
+         padding-left: calc(#{$factor} * #{$i}rem) !important;
+         padding-right: calc(#{$factor} * #{$i}rem) !important;
+      }
+
+      .vpt-#{$i} {
+         padding-top: calc(#{$factor} * #{$i}rem) !important;
+      }
+
+      .vpb-#{$i} {
+         padding-bottom: calc(#{$factor} * #{$i}rem) !important;
+      }
+
+      .vpl-#{$i} {
+         padding-left: calc(#{$factor} * #{$i}rem) !important;
+      }
+
+      .vpr-#{$i} {
+         padding-right: calc(#{$factor} * #{$i}rem) !important;
+      }
+
+      /* Margins */
+      .vm-#{$i} {
+         margin: calc(#{$factor} * #{$i}rem) !important;
+      }
+
+      .vmy-#{$i} {
+         margin-top: calc(#{$factor} * #{$i}rem) !important;
+         margin-bottom: calc(#{$factor} * #{$i}rem) !important;
+      }
+
+      .vmx-#{$i} {
+         margin-left: calc(#{$factor} * #{$i}rem) !important;
+         margin-right: calc(#{$factor} * #{$i}rem) !important;
+      }
+
+      .vmt-#{$i} {
+         margin-top: calc(#{$factor} * #{$i}rem) !important;
+      }
+
+      .vmb-#{$i} {
+         margin-bottom: calc(#{$factor} * #{$i}rem) !important;
+      }
+
+      .vml-#{$i} {
+         margin-left: calc(#{$factor} * #{$i}rem) !important;
+      }
+
+      .vmr-#{$i} {
+         margin-right: calc(#{$factor} * #{$i}rem) !important;
+      }
+   }
+}
+
+@mixin font-sizes($factor) {
+   @for $i from 1 through 30 {
+
+      /* Font Sizes*/
+      .vfs-#{$i} {
+         --size: calc(0.3rem + #{$i}rem);
+         font-size: calc(#{$factor} * var(--size)) !important;
+      }
+      
+   }
+}
+
+      

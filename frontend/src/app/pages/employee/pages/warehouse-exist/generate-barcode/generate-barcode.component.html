@@ -1,0 +1,127 @@
+<section>
+  <div class="card">
+    <form [formGroup]="barcodeForm" (ngSubmit)="onSubmit()">
+      <div class=" flex justify-content-between">
+        <h5 class="my-auto">Generate Barcode</h5>
+        <div class="flex">
+          <button pButton pRipple type="submit" [loading]="submitted" [disabled]="!barcodeForm.valid || submitted"
+            label="Update" class="mr-3"></button>
+          <button pButton pRipple type="button" [loading]="submitted" [disabled]="!barcodeForm.valid || submitted"
+            label="Print" (click)="onPrint()"></button>
+        </div>
+      </div>
+      <p-divider></p-divider>
+      <div class="p-fluid p-formgrid md:flex">
+        <div class="col-12 md:col-6 flex-column mb-3 md:mb-0">
+          <div class="field form-control mb-4">
+            <p-table #dt [value]="products" dataKey="id" [rows]="10" [rowHover]="true" [paginator]="true"
+              [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [totalRecords]="totalRecords"
+              responsiveLayout="scroll">
+              <ng-template pTemplate="caption">
+                <div class="field form-control mb-4">
+                  <label for="product_name" class="block font-medium pb-2 required">Product Name</label>
+                  <input pInputText id="productName" type="text" placeholder="Scan / search products by code / name"
+                    class="w-full" #filter (input)="dt.filterGlobal($event.target.value, 'contains')"
+                    formControlName="name">
+                  <small class="p-error" *ngIf="(controls.name.touched || submitted) && controls.name.errors?.required">
+                    Enter name
+                  </small>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                    Code
+                  </th>
+                  <th>
+                  <th>
+                    <div class="flex justify-content-center">
+                      Quantity
+                    </div>
+                  </th>
+                  <th>
+                    <div class="flex justify-content-center">
+                      Action
+                    </div>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-product>
+                <tr *ngIf="!loading">
+                  <td style="min-width: 10rem;">
+                    <span>{{product.name}}</span>
+                  </td>
+                  <td style="min-width: 8rem;">
+                    <span>{{product.code}}</span>
+                  </td>
+                  <td style="min-width: 4rem;">
+                    <div class="flex justify-content-center">
+                      <p-inputNumber [showButtons]="true" size="3rem" placeholder="0" buttonLayout="horizontal"
+                        spinnerMode="horizontal" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                      </p-inputNumber>
+                    </div>
+                  </td>
+                  <td style="min-width: 5rem;">
+                    <div class="flex justify-content-center">
+                      <button pButton pRipple type="button" icon="pi pi-times" (click)="selectedProduct = product;"
+                        class="p-button-rounded p-button-danger p-button-text"></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngIf="loading">
+                  <td *ngFor="let product of products">
+                    <p-skeleton></p-skeleton>
+                  </td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                  <td colspan="7">No records found</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <div class="field form-control mb-4">
+            <label for="printInfo" class="block font-medium pb-2 required">Print Information</label>
+            <div class="grid p-fluid p-formgrid field gap-3 ml-0 mb-0">
+              <div class="field flex mb-0">
+                <p-checkbox id="printName" [binary]="true" styleClass="mr-2"></p-checkbox>
+                <label for="check_name" class="mb-0">Name</label>
+              </div>
+              <div class="field flex mb-0">
+                <p-checkbox id="printName" [binary]="true" styleClass="mr-2"></p-checkbox>
+                <label for="check_code" class="mb-0">code</label>
+              </div>
+              <div class="field flex mb-0">
+                <p-checkbox id="printName" [binary]="true" styleClass="mr-2"></p-checkbox>
+                <label for="check_inventual" class="mb-0">Import by Inventual</label>
+              </div>
+              <div class="field flex mb-0">
+                <p-checkbox id="printName" [binary]="true" styleClass="mr-2"></p-checkbox>
+                <label for="check_price" class="mb-0">Price</label>
+              </div>
+              <div class="field flex mb-0">
+                <p-checkbox id="printName" [binary]="true" styleClass="mr-2"></p-checkbox>
+                <label for="check_promotional_price" class="mb-0">Promotional Price</label>
+              </div>
+            </div>
+          </div>
+          <div class="field form-control mb-4">
+            <label for="paper_size" class="block font-medium pb-2 required">Paper Size</label>
+            <p-dropdown [options]="paper_Sizes" optionLabel="size" optionValue="id" placeholder="Select Paper Size"
+              [showClear]="true" styleClass="w-full" formControlName="paper_size">
+            </p-dropdown>
+            <small class="p-error"
+              *ngIf="(controls.paper_size.touched || submitted) && controls.paper_size.errors?.required">
+              Select paper size </small>
+          </div>
+        </div>
+        <div class="col-12 md:col-6">
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

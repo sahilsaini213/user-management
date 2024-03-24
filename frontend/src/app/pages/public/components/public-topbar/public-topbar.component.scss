@@ -1,0 +1,51 @@
+:host {
+  box-shadow: 0 0 20px 0 #bfbfc7;
+  position: fixed;
+}
+
+.toolbar-mobile-panel {
+  font-size: 1.25rem;
+
+  ul:nth-of-type(1) {
+    flex-grow: 1;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .toolbar-mobile-panel {
+    box-shadow: 0px 9px 10px -9px;
+    background-color: var(--surface-200) !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .toolbar-mobile-panel {
+    font-size: 1rem;
+    top: 57px;
+
+    ul {
+      li {
+        a {
+          padding: 1rem;
+        }
+      }
+    }
+
+    .for-button {
+      margin-bottom: 1.3rem;
+    }
+  }
+}
+
+.headings-text {
+  font-family: 'Obviously-Wide';
+  color: var(--banner-text-a);
+}
+
+ul {
+  li {
+    a {
+      color: var(--banner-text-a);
+    }
+  }
+}

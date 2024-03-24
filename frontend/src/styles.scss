@@ -1,0 +1,259 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ctrl/ngx-emoji-mart/picker";
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/primeflex/primeflex.scss";
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/prismjs/themes/prism-coy.css";
+@import "assets/sass/layout/_variables";
+@import "assets/sass/layout/_layout";
+@import "assets/sass/overrides/_overrides";
+@import "./mixins";
+
+.emoji-mart-preview {
+ display: none;
+}
+
+// Hwims Custom Breakpoints to have variable spacing & font sizes for different screen sizes 
+.qb-sm {
+    // <768px
+
+    /*Spacing classes*/
+    @include spacing-utilities(0.18);
+    /*font classes*/
+    @include font-sizes(0.32);
+}
+
+.qb-md {
+    // ≥768px
+
+    /*Spacing classes*/
+    @include spacing-utilities(0.20);
+    /*font classes*/
+    @include font-sizes(0.36);
+}
+
+.qb-lg {
+    // ≥992px
+
+    /*Spacing classes*/
+    @include spacing-utilities(0.22);
+    /*font classes*/
+    @include font-sizes(0.40);
+}
+
+.qb-xl {
+    // ≥1200px
+    /*Spacing classes*/
+    @include spacing-utilities(0.26);
+    /*font classes*/
+    @include font-sizes(0.44);
+}
+
+.qb-xxl {
+    // ≥1400px
+
+    /*Spacing classes*/
+    @include spacing-utilities(0.30);
+    /*font classes*/
+    @include font-sizes(0.48);
+}
+
+// main Logo
+
+.hwims-logo {
+    font-family: "Obviously-Wide";
+    color: var(--logo-color);
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+.temp-logo {
+    transform: scale(2);
+    width: 106px;
+}
+
+// For Headerless Dialogs
+.p-dialog-headerless {
+    .p-dialog-content{
+        padding: 0;
+    }
+}
+
+// PRIME DESIGN Override
+.p-scrollpanel .p-scrollpanel-bar {
+    background: #88898b;
+}
+
+// Top Bar Context Menu
+.layout-topbar-context-menu { 
+    top: 4.35em !important;
+    .p-overlaypanel-content {
+        padding: 0rem;
+        .p-listbox-item {
+            padding: 0.85rem 0.9rem;
+        }
+        .p-disabled{
+            opacity: 9;
+        }
+    }
+    p-listbox {
+        ul {
+          padding: 0 !important;
+        }
+    }
+}
+
+// Button related
+.p-button {
+    text-transform: capitalize;
+
+    // To justify spinner with text at center
+    &[type] {
+        justify-content: center;
+        span {
+            flex: none;
+        }
+    }
+
+    // Added class for extra large buttons
+    &.p-button-xl {
+        font-size: 1.25rem;
+        padding: 1.3rem 3rem !important;
+    }
+}
+
+// ******** Custom common classes ***********
+.container-xl {
+    margin: auto !important;
+}
+
+@media (min-width: 1500px) {
+    .container-xl {
+        max-width: 1500px;
+    }
+}
+
+@media screen and (min-width: 765px){
+    .shadow {
+        box-shadow: 1px -1px 3px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+    }
+}
+
+$surfaces: 'a', 'b', 'c', 'd', 'e';
+
+// Variants of Banner Surfaces
+@each $surface in $surfaces {
+    .banner-surface-#{$surface} {
+        color: var(--banner-text-#{$surface});
+        background-color: var(--banner-surface-#{$surface});
+    }
+    .text-color-#{$surface} {
+        color: var(--banner-text-#{$surface});
+    }
+}
+
+.text-color-red {
+    color: var(--text-color-error);
+}
+
+// Badges CSS
+.badge {
+    font-size: .8rem;
+     &.Active, &.active, &.True, &.true, &.PAID, &.Paid, &.paid, &.COMPLETED, &.Published, &.published, &.Completed, &.completed {
+      background: var(--bg-color-success);
+      color: var(--color-success);
+    }
+  
+    &.InActive, &.inactive, &.PARTIAL, &.PENDING, &.Pending, &.pending, &.draft, &.Draft{
+      background: var(--bg-color-warn);
+      color: var(--color-warn);
+    }
+  
+    &.False, &.false, &.SENT, &.Sent, &.sent{
+      background: var(--bg-color-error);
+      color: var(--color-error);
+    }
+  
+    &.POPUP{
+      background: var(--bg-color-info);
+      color: var(--color-info);
+    }
+  }
+
+:root {
+    .action-overlayPanel {
+        --overlayArrowLeft: 183px !important;
+    .p-overlaypanel-content {
+        padding:0;
+    }
+}
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.spinner-container {
+    top: 0;
+    left: 0;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    background: transparent;
+
+    .sk-square-jelly-box {
+        width: 60px;
+        height: 60px;
+        position: relative;
+        &>div {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            display: inline-block;
+            float: none;
+        }
+        &> div:nth-child(1){
+            top: -25%;
+            z-index: 99997;
+            height: 100%;
+            border-radius: 10%;
+            animation: square-jelly-box-animate .6s -.1s linear infinite;
+        }
+        &> div:nth-child(2) {
+            bottom: -9%;
+            height: 10%;
+            border-radius: 50%;
+            background-color: currentColor;
+            opacity: .2;
+            animation: square-jelly-box-shadow .6s -.1s linear infinite;
+        }
+    }
+}
+
+@keyframes square-jelly-box-animate {
+    17%   {
+        border-bottom-right-radius: 10%;
+    }
+    25%  {
+        transform: translateY(25%) rotate(22.5deg);
+    }
+    50%  {
+        border-bottom-right-radius: 100%;
+        transform: translateY(50%) scaleY(.9) rotate(45deg);
+    }
+    70% {
+        transform: translateY(25%) rotate(67.5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(90deg);
+    }
+  }
+
+@keyframes square-jelly-box-shadow {
+    50% {
+        transform: scaleX(1.25);
+    }
+}

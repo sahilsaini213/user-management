@@ -1,0 +1,19 @@
+<ng-container [ngSwitch]="type">
+
+    <div *ngSwitchCase="types.CARD" class="card mb-0">
+        <div class="flex justify-content-between mb-3">
+            <div>
+                <span class="block mb-3 font-medium text-color-b">
+                    <p-skeleton width="4rem"></p-skeleton>
+                </span>
+                <div class="font-medium text-xl">
+                    <p-skeleton width="7rem" styleClass="mb-2"></p-skeleton>
+                </div>
+            </div>
+            <div class="flex border-round">
+                <p-skeleton shape="circle" size="2rem" styleClass="text-xl"></p-skeleton>
+            </div>
+        </div>
+    </div>
+
+</ng-container>

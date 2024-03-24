@@ -1,0 +1,56 @@
+<section>
+    <div class="card">
+        <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+            <div class="md:flex justify-content-between mb-3">
+                <h5 class="my-auto">Admin</h5>
+                <div class="flex justify-content-between md:justify-content-end">
+                    <div class="form-control mr-3 flex">
+                      <div class="flex my-auto">
+                        <span class="my-auto">Inactive</span>
+                        <p-inputSwitch class="mx-2 mt-2" formControlName="is_active"></p-inputSwitch>
+                        <span class="my-auto">Active</span>
+                      </div>
+                    </div>
+                    <button pButton pRipple type="submit" label="{{isNew ? 'Create' : 'Update'}}" [loading]="loading"
+                    [disabled]="!form?.valid || !user?.image?.url || loading"></button>
+                 </div>
+            </div>
+            <p-divider></p-divider>
+            <div class="p-fluid grid">
+                <div class="field col-12 md:col-6 m-0">
+                    <label htmlFor="fname" class="required">First Name</label>
+                    <input pInputText id="fname" type="text" placeholder="First Name" formControlName="first_name">
+                    <uikit-error [controls]="controls" [submitted]="submitted" name="first_name" placehoher="first name"></uikit-error>
+                </div>
+                <div class="field col-12 md:col-6 m-0">
+                    <label htmlFor="lname">Last Name</label>
+                    <input pInputText id="lname" type="text" placeholder="Last Name" formControlName="last_name" />
+                </div>
+                <div class="field col-12 md:col-6 m-0">
+                    <label for="otp" class="block font-medium vpb-2 mb-0">Password</label>
+                    <div class="p-inputgroup">
+                      <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+                      <p-password [toggleMask]="true" formControlName="password" 
+                           styleClass="w-full p-input-icon-right" inputStyleClass="w-full border-noround p-input-icon-right">
+                      </p-password>
+                    </div>
+                    <uikit-error [controls]="controls" [submitted]="submitted" name="password" placehoher="password"></uikit-error>
+                  </div>
+                <div class="field col-12 md:col-6 m-0">
+                    <label htmlFor="email" class="required">Email</label>
+                    <input pInputText id="email" type="email" placeholder="Email address" formControlName="email">
+                    <uikit-error [controls]="controls" [submitted]="submitted" name="email"></uikit-error>
+                </div>
+                <div class="field col-12 md:col-6 m-0">
+                    <multi-input label="Phone" [mode]="multiInputMode" formControlName="phone_number">
+                    </multi-input>
+                    <uikit-error [controls]="controls" [submitted]="submitted" name="phone_number" placehoher="phone number"></uikit-error>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="image" class="block font-medium required">Profile Image</label>
+                    <uikit-image (onChange)="onImageSelectionChange($event)"></uikit-image>
+                  </div>
+            </div>
+        </form>
+    </div>
+</section>

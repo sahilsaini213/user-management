@@ -1,0 +1,13 @@
+:host::ng-deep {
+  .p-fluid .p-fileupload .p-button {
+    height: 2.65rem;
+  }
+
+  .p-button.p-button-outlined {
+    color: var(--banner-text-b) !important;
+  }
+
+  .t-custom {
+    color: var(--banner-text-b);
+  }
+}

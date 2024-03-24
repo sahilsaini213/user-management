@@ -1,0 +1,19 @@
+.page-container {
+    margin-top: 58px;
+}
+
+:host ::ng-deep {
+    .public-scroll-panel {
+        height: calc(100vh - 68px);
+    }
+    .p-scrollpanel-content {
+        padding: 0;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .page-container {
+        margin-top: 58px;
+    }
+}

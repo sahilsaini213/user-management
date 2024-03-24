@@ -1,0 +1,25 @@
+hr {
+    border: 0.2px ridge !important;
+    &:first-child {
+        border: none !important;
+        margin: 0px;
+    }
+}
+
+@media (max-width: 991px) {
+    .hwims-toggle-sidebar {
+        order: 0 !important;
+    }
+
+    .hwims-logo {
+        order: 1 !important;
+    }
+
+    .hwims-profile-avatar {
+        order: 1 !important;
+    }
+}
+.headings-text {
+    font-family: 'Obviously-Wide';
+    color: var(--banner-text-a);
+  }

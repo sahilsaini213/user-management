@@ -1,0 +1,10 @@
+<section>
+    <h5>
+        Are you sure you want to delete? Once deleted, it cannot be recovered.
+    </h5>
+    <div class="flex justify-content-end">
+    <button pButton pRipple label="Cancel"class="p-button-outlined" (click)="onClose()"></button>
+    <button pButton pRipple label="Confirm" class="ml-3" [disabled]="submitted" [loading]="submitted"
+     (click)="confirmDeleteItem()"></button>
+     </div>
+</section>

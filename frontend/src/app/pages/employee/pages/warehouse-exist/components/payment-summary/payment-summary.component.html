@@ -1,0 +1,62 @@
+<form [formGroup]="form">
+  <div class="p-fluid p-formgrid grid">
+    <div class="field col-12 md:col-4">
+      <label for="tax" class="block font-medium pb-2 required">Tax</label>
+      <p-dropdown [options]="taxes" optionLabel="tax" optionValue="id" placeholder="Choose tax" [showClear]="true"
+        formControlName="tax_id">
+      </p-dropdown>
+      <small class="p-error" *ngIf="(controls.tax_id.touched || submitted) && controls.tax_id.errors?.required">
+        Select tax</small>
+    </div>
+    <div class="field col-12 md:col-4">
+      <label for="discount" class="block font-medium pb-2">Discount</label>
+      <p-inputNumber inputId="discount" suffix=" %" placeholder="0 %" formControlName="discount">
+      </p-inputNumber>
+      <small class="p-error" *ngIf="(controls.discount.touched || submitted) && controls.discount.errors?.required">
+        enter discount</small>
+    </div>
+    <div class="field col-12 md:col-4">
+      <label for="shipping" class="block font-medium pb-2">Shipping</label>
+      <p-inputNumber inputId="shipping" placeholder="INR 0" mode="currency" currency="INR" currencyDisplay="code"
+        formControlName="shipping"></p-inputNumber>
+      <small class="p-error" *ngIf="(controls.shipping.touched || submitted) && controls.shipping.errors?.required">
+        Enter shipping charges</small>
+    </div>
+    <div class="field col-12 md:col-4">
+      <label for="sale_status" class="block font-medium pb-2 required">Sale Status</label>
+      <p-dropdown [options]="status" optionLabel="status" optionValue="id" placeholder="Choose sale status"
+        [showClear]="true" formControlName="sale_status_id">
+      </p-dropdown>
+      <small class="p-error"
+        *ngIf="(controls.sale_status_id.touched || submitted) && controls.sale_status_id.errors?.required">
+        Select sale status</small>
+    </div>
+    <div class="field col-12 md:col-4">
+      <label for="payment_status" class="block font-medium pb-2 required">Payment Status</label>
+      <p-dropdown [options]="paymentStatus" optionLabel="status" optionValue="id" placeholder="Choose payment status"
+        [showClear]="true" formControlName="payment_status_id">
+      </p-dropdown>
+      <small class="p-error"
+        *ngIf="(controls.payment_status_id.touched || submitted) && controls.payment_status_id.errors?.required">
+        Select payment status</small>
+    </div>
+    <div class="field col-12 md:flex mb-0 p-0">
+      <div class="field col-12 md:col-6">
+        <label for="sales_note" class="block font-medium pb-2">Sales Note</label>
+        <textarea placeholder="Type text" rows="3" cols="30" pInputTextarea [autoResize]="true"
+          formControlName="sales_note"></textarea>
+        <small class="p-error"
+          *ngIf="(controls.sales_note.touched || submitted) && controls.sales_note.errors?.required">
+          Write staff remark</small>
+      </div>
+      <div class="field col-12 md:col-6">
+        <label for="staff_remark" class="block font-medium pb-2">Staff Remark</label>
+        <textarea placeholder="Type text" rows="3" cols="30" pInputTextarea [autoResize]="true"
+          formControlName="staff_remark"></textarea>
+        <small class="p-error"
+          *ngIf="(controls.staff_remark.touched || submitted) && controls.staff_remark.errors?.required">
+          Write staff remark</small>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,54 @@
+<div class="py-3 px-5 md:px-8 relative">
+  <div class="flex align-items-center justify-content-between container-xl">
+    <a class="cursor-pointer hss_logo" title="Hawker Software Services" (click)="routeService.navigateWithPreserve('')">
+      <!-- <img src="assets/images/logo/hss_logo.png" alt="Warehouse" height="30" /> -->
+      <h3 class="mb-0 mr-7 headings-text">Hwims</h3>
+    </a>
+    <a pRipple class="cursor-pointer block lg:hidden " pStyleClass="@next" enterClass="hidden" leaveToClass="hidden"
+      [hideOnOutsideClick]="true">
+      <i class="pi pi-bars text-4xl"></i>
+    </a>
+    <div
+      class="toolbar-mobile-panel align-items-center surface-0 flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full left-0 px-5 lg:px-0 z-2">
+      <ul
+        class="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row cursor-pointer justify-content-center">
+        <li class="public-topbar-item">
+          <a (click)="routeService.navigateWithPreserve('pricing')" pRipple
+            class="flex m-0 md:ml-5 font-medium line-height-3">
+            <span>Pricing</span>
+          </a>
+        </li>
+        <!-- <li class="public-topbar-item">
+          <a (click)="routeService.navigateWithPreserve('about-us')" pRipple
+            class="flex m-0 md:ml-5 font-medium line-height-3">
+            <span>About Us</span>
+          </a>
+        </li> -->
+        <li class="public-topbar-item">
+          <a (click)="showContactUsForm()" pRipple class="flex m-0 md:ml-5 font-medium line-height-3">
+            <span>Contact Us</span>
+          </a>
+        </li>
+      </ul>
+      <ul
+        class="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row cursor-pointer justify-content-center">
+        <li class="public-topbar-item for-button" *ngIf="!isLoggedIn">
+          <a pButton pRipple label="Login" class="p-button p-button-rounded flex md:ml-5 px-5 font-medium line-height-3 text-white"
+            (click)="routeService.navigateWithPreserve('auth/signin')" target="_blank">
+          </a>
+        </li>
+        <li class="public-topbar-item" *ngIf="isLoggedIn">
+          <a (click)="routeService.navigateWithPreserve(isEmployee ? 'app' : 'admin')" pRipple
+            class="flex m-0 md:ml-5 font-medium line-height-3">
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="public-topbar-item for-button" *ngIf="isLoggedIn">
+          <a pButton pRipple label="Logout"
+            class="p-button p-button-rounded flex md:ml-5 px-5 font-medium line-height-3 text-white" (click)="logout()"
+            target="_blank"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

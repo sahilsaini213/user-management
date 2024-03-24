@@ -1,0 +1,46 @@
+<section>
+  <div>
+    <div class="col-12 pb-0">
+      <form class="form" [formGroup]="categoryform" (ngSubmit)="onSubmit()">
+        <div class="p-fluid p-formgrid grid">
+          <div class="field col-12 mb-0">
+            <label for="name" class="block font-medium required">Category</label>
+            <input id="name" type="text" placeholder="Category Name" pInputText formControlName="category">
+            <uikit-error [controls]="controls" [submitted]="submitted" name="category" placehoher="category"></uikit-error>
+          </div>
+          <div class="field col-12 mb-0">
+            <label for="Message" class="block font-medium required">Description</label>
+            <textarea pInputTextarea placeholder="Your Message" autoResize rows="3" cols="30"
+              formControlName="message"></textarea>
+              <uikit-error [controls]="controls" [submitted]="submitted" name="message" placehoher="message"></uikit-error>
+          </div>
+          <p-divider class="col-12 py-0 my-0"></p-divider>
+          <div class="field col-12 mb-0" formArrayName="sub_categories">
+            <div class="flex justify-content-between mb-2">
+              <label for="name" class="block font-medium required my-auto mr-3">Sub Category</label>
+              <button pButton pRipple type="button" class="p-button-text" label="Add" 
+                (click)="addSubCategory()" styleClass="p-button-sm">
+              </button>
+            </div>
+            <div class="field col-12 flex justify-content-between mb-0 px-0 pt-0"
+              *ngFor="let subCategory of subCategoryFormArray.controls; let indx = index" [formGroupName]="indx">
+              <div class="col-11 pl-0">
+                <input formControlName="name" type="text" placeholder="Sub-Category Name" pInputText>
+              </div>
+              <span class="col-1 flex text-red pr-0" (click)="removeSubCategory(indx)"
+                *ngIf="subCategoryFormArray?.controls?.length > 1">
+                <i class="font-bold text-2xl pi pi-trash m-auto"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-content-end">
+          <button pButton pRipple type="submit" label="{{isNew ? 'Create' : 'Update'}}" 
+            [loading]="submitted"
+            [disabled]="!categoryform.valid">
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

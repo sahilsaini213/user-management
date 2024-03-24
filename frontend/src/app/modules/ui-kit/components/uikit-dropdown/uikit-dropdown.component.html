@@ -1,0 +1,16 @@
+<div class="field mb-0">
+    <label for="{{config.label}}" class="block capitalize font-medium required">
+        {{config.label}}
+    </label>
+    <p-dropdown 
+        [disabled]="disabled"
+        [options]="options" 
+        [(ngModel)]="value" 
+        (onChange)="detectChanges()" 
+        [readonly]="disabled"
+        [optionLabel]="config.optionLabel" 
+        [optionValue]="config.optionValue"
+        placeholder="Choose {{config.label}}" 
+        [showClear]="true">
+    </p-dropdown>
+</div>

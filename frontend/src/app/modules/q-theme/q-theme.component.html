@@ -1,0 +1,38 @@
+<div id="layout-config" class="layout-config" [ngClass]="{'layout-config-active': menuActive}"
+    (click)="onConfigClick($event)">
+    <a style="cursor: pointer" id="layout-config-button" class="layout-config-button"
+        (click)="onConfigButtonClick($event)">
+        <i class="pi pi-cog"></i>
+    </a>
+    <button pButton pRipple type="button" icon="pi pi-times"
+        class="p-button-rounded p-button-danger p-button-text layout-config-close"
+        (click)="onConfigButtonClick($event)"></button>
+    <div class="layout-config-content">
+        <h6 class="mt-0">Component Scale</h6>
+        <div class="config-scale">
+            <button pButton pRipple type="button" icon="pi pi-minus" (click)="decrementScale()"
+                class="p-button-rounded p-button-text" [disabled]="scale === scales[0]"></button>
+            <i *ngFor="let item of scales" class="pi pi-circle-fill" [ngClass]="{'scale-active': item === scale}"></i>
+            <button pButton pRipple type="button" icon="pi pi-plus" (click)="incrementScale()"
+                class="p-button-rounded p-button-text" [disabled]="scale === scales[scales.length - 1]"></button>
+        </div>
+
+        <h6>Theme</h6>
+        <div class="grid free-themes">
+            <div class="col-3 text-center">
+                <p-avatar label="L" styleClass="mr-2 p-link" size="large"
+                [style]="{'background-color': 'rgb(224 224 224)', 'color': 'rgb(7 21 37)', 'font-weight': 'bolder'}" 
+                shape="circle"
+                title="Light"
+                (click)="changeTheme(false)"></p-avatar>
+            </div>
+            <div class="col-3 text-center">
+                <p-avatar label="D" styleClass="mr-2 p-link" size="large"
+                [style]="{'background-color': 'rgb(92 89 89)', 'color': 'rgb(223 225 227)', 'font-weight': 'bolder'}" 
+                shape="circle"
+                title="Dark"
+                (click)="changeTheme(true)"></p-avatar>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="layout-topbar flex justify-content-between">
+  <div class="flex justify-content-center align-items-center">
+    <a class=" hwims-logo cursor-pointer hss_logo" title="Hawker Software Services" (click)="routeService.navigateWithPreserve('')">
+      <!-- <img src="assets/images/logo/hss_logo.png" alt="Hss_Warehouse" height="30" class="ml-1 mr-3" /> -->
+      <h3 class="mb-0 mr-7 headings-text">Hwims</h3>
+    </a>
+
+    <a class="p-link layout-menu-button layout-topbar-button hwims-toggle-sidebar"
+      (click)="parentRef?.toggleMenu($event)" *ngIf="!hideSideMenuButton">
+      <i class="pi pi-bars"></i>
+    </a>
+
+    <a class="p-link layout-topbar-menu-button layout-topbar-button" (click)="parentRef?.toggleTopMenu($event)"
+      *ngIf="navbarData.items?.length">
+      <i class="pi pi-ellipsis-v"></i>
+    </a>
+
+    <div class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active':parentRef?.topMenuActive}"
+      *ngIf="navbar && navbarData.items?.length">
+      <a *ngFor="let item of items;" href="#" class="p-link layout-topbar-button" (click)="item.command($event, item)"
+        [routerLink]="navbarData.item.routerLink">
+        <i *ngIf="navbarData.item.iconClass" class="pi {{navbarData.item.iconClass}}"></i>
+        <span [innerText]="navbarData.item.label"></span>
+      </a>
+    </div>
+  </div>
+
+  <div>
+    <p-overlayPanel #op styleClass="layout-topbar-context-menu">
+      <ng-template pTemplate>
+        <ng-container *ngFor="let navbarItem of navbarData.profileItems; let fst = first;">
+          <p-divider *ngIf="!fst" styleClass="m-0"></p-divider>
+          <p-listbox [options]="navbarItem.items" [style]="{'width':'19rem','border':'none'}"
+            (onClick)="op.toggle($event);onMenuItemClick($event);">
+            <ng-template pTemplate="item" let-item>
+              <div class="flex align-items-center">
+                <q-avatar *ngIf="item.avatar" [avatar]="item.avatar"></q-avatar>
+                <div *ngIf="item.icon" class="mr-2 {{item.icon}}"></div>
+                <div [ngClass]="{'pl-2 font-bold': item.avatar}"> {{item.label}}</div>
+              </div>
+            </ng-template>
+          </p-listbox>
+        </ng-container>
+      </ng-template>
+    </p-overlayPanel>
+    <q-avatar (click)="op.show($event, actualTarget)" [avatar]="topBarNavAvatar" [skeleton]="!topBarNavAvatar">
+    </q-avatar>
+    <div #actualTarget></div>
+  </div>
+</div>

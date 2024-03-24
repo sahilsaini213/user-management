@@ -1,0 +1,100 @@
+<section>
+  <div class="surface-0 flex flex-column align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="text-center mt-0 mb-7 md:hidden">
+      <a class="hwims-logo cursor-pointer" (click)="routeService.navigateWithPreserve('')">
+        <h3>HWIMS</h3>
+      </a>
+    </div>
+    <div class="flex justify-content-center md:m-auto" style="min-height: 550px">
+      <auth-info-board></auth-info-board>
+      <div class="border-round-right-3xl md:col-4 col-12 m-0 shadow relative" style="min-width:375px">
+        <div class="flex justify-content-end">
+          <button pButton pRipple label="Demo Data" class="p-button-rounded blink absolute"
+           (click)="showDemoData()"></button>
+        </div>
+        <div class="vmx-8 md:pt-8">
+          <h2>Sign In</h2>
+          <p-tabView>
+            <p-tabPanel header="Username">
+              <form class="form" [formGroup]="passwordForm" (ngSubmit)="loginByPassword()" novalidate>
+                <div class="vpy-4">
+                  <div class="vpb-4">
+                    <multi-input label="Username" [mode]="multiInputAllMode" [disabled]="isVerifingOTP"
+                      formControlName="username"></multi-input>
+                    <uikit-error [controls]="controls" [submitted]="submitted" name="username" placehoher="username"></uikit-error>
+                  </div>
+                  <div class="vpb-4">
+                    <label for="otp" class="block font-medium vpb-2">Password</label>
+                    <div class="p-inputgroup">
+                      <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+                      <p-password [toggleMask]="true" formControlName="password" placeholder="password"
+                           styleClass="w-full p-input-icon-right" inputStyleClass="w-full border-noround p-input-icon-right">
+                      </p-password>
+                    </div>
+                    <uikit-error [controls]="controls" [submitted]="submitted" name="password" placeholder="password"></uikit-error>
+                  </div>
+                  <button pButton pRipple label="Sign In" class="w-full p-button-rounded vmt-3"
+                    [loading]="submitted" [disabled]="!passwordForm.valid"
+                    type="submit"></button>
+                </div>
+              </form>
+            </p-tabPanel>
+            <p-tabPanel header="Phone">
+              <form class="form" [formGroup]="form" (ngSubmit)="login()" novalidate>
+                <div class="vpy-4">
+                  <div class="vpb-4">
+                    <multi-input label="Phone" [mode]="multiInputMode" [disabled]="isVerifingOTP"
+                      formControlName="username"></multi-input>
+                    <small class="p-error"
+                      *ngIf="(form.controls.username.touched || submitted) && form.controls.username.errors?.phone_number?.required">Enter
+                      phone number</small>
+                    <small class="p-error"
+                      *ngIf="(form.controls.username.touched || submitted) && form.controls.username.errors?.email?.required">Enter
+                      email</small>
+                    <small class="p-error"
+                      *ngIf="form.controls.username.touched && form.controls.username.errors?.phone_number?.invalid">Invalid
+                      phone number</small>
+                    <small class="p-error"
+                      *ngIf="form.controls.username.touched && form.controls.username.errors?.email?.invalid">Invalid
+                      email</small>
+                  </div>
+                  <div class="vpb-4" *ngIf="isVerifingOTP">
+                    <label for="otp" class="block font-medium vpb-2">OTP</label>
+                    <input id="otp" type="text" placeholder="Verification code" pInputText class="w-full"
+                      formControlName="otp">
+                    <small class="p-error"
+                      *ngIf="(form.controls.otp.touched || submitted) && form.controls.otp.errors?.required">Enter
+                      OTP</small>
+                    <small class="p-error"
+                      *ngIf="form.controls.otp.touched && (form.controls.otp.errors?.pattern || form.controls.otp.errors?.minlength || form.controls.otp.errors?.maxlength)">Invalid
+                      OTP</small>
+                  </div>
+                  <div class="text-center vmb-4" *ngIf="isVerifingOTP">
+                    Haven't received,<a (click)="resentOTP()" type="submit"> Resend OTP </a>
+                  </div>
+                  <button pButton pRipple label="Verify" class="w-full p-button-rounded" (click)="verifyOTP()"
+                    *ngIf="isVerifingOTP" [loading]="submitted" type="submit"
+                    [disabled]="!form.controls.otp.valid"></button>
+                  <button pButton pRipple label="Sign In" class="w-full p-button-rounded vmt-3"
+                    *ngIf="!isVerifingOTP" [loading]="submitted" [disabled]="!form.controls.username.valid"
+                    type="submit"></button>
+                </div>
+              </form>
+            </p-tabPanel>
+          </p-tabView>
+        </div>
+        <!-- <div class="flex justify-content-center m-0 p-0 gap-1">
+          <small>
+            <p class="m-0 p-0">Don't have an account?</p>
+          </small>
+        </div> -->
+        <div id="recaptcha-container" class="vpb-4"> </div>
+      </div>
+    </div>
+    <div class="layout-footer vmb-4">
+      <a class="cursor-pointer" (click)="routeService.navigateWithPreserve('')">
+        © HWIMS INC. 2023
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,88 @@
+<section>
+  <div class="grid">
+    <ng-container *ngIf="!loading">
+      <div class="col-12 lg:col-6 xl:col-3" *ngFor="let activity of activities; index as indx;">
+        <div class="card mb-0">
+          <div class="flex justify-content-between mb-3">
+            <div>
+              <span class="block mb-3 font-medium text-color-b">{{activity.heading}}</span>
+              <div class="font-medium text-xl">
+                {{ activity.key }}</div>
+            </div>
+            <div class="flex border-round">
+              <i class="{{ activity.icon }} text-xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="loading">
+      <div class="col-12 lg:col-6 xl:col-3" *ngFor="let activity of activities;">
+        <q-skeleton [type]="skeletonType"></q-skeleton>
+      </div>
+    </ng-container>
+  </div>
+  <div class="card mt-2 md:mt-4">
+    <div>
+      <p-tabView>
+        <p-tabPanel header="Admins" leftIcon="pi pi-users">
+          <div class="pt-3">
+            <p-table #dt1 dataKey="id" [value]="admins" [rows]="5" [rowHover]="true" [paginator]="true"
+              [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [totalRecords]="totalRecords"
+              responsiveLayout="scroll">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th *ngFor="let column of columns" [pSortableColumn]="column.key" [style]="column.style">
+                    <uikit-table-column [column]="column"></uikit-table-column>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-admin>
+                <tr *ngIf="!loading">
+                  <td *ngFor="let column of columns" [style]="column.style">
+                    <ng-container [ngSwitch]="column.key">
+
+                      <span *ngSwitchCase="'first_name'">
+                        {{admin.first_name}} {{admin.last_name}}
+                      </span>
+
+                      <p-chip *ngSwitchCase="'status'" class="flex"
+                        [label]="admin.is_active === true? 'active' : 'inactive'"
+                        styleClass="mx-auto mr-2 badge capitalize {{admin.is_active}}">
+                      </p-chip>
+
+                      <span *ngSwitchCase="'users_count'">
+                        <p-badge *ngIf="admin.users_count" class="flex" [value]="admin.users_count"
+                          styleClass="mx-auto badge"></p-badge>
+                      </span>
+
+                      <span *ngSwitchCase="'warehouse_count'">
+                        <p-badge *ngIf="admin.warehouse_count" class="flex" [value]="admin.warehouse_count"
+                          styleClass="mx-auto badge"></p-badge>
+                      </span>
+
+                      <span *ngSwitchDefault>
+                        {{admin[column.key]}}
+                      </span>
+
+                    </ng-container>
+                  </td>
+                </tr>
+                <tr *ngIf="loading">
+                  <td *ngFor="let admin of admins">
+                    <p-skeleton></p-skeleton>
+                  </td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                  <td colspan="6">No records found</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</section>

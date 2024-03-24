@@ -1,0 +1,68 @@
+<section>
+  <button pButton pRipple type="button" icon="pi pi-times" (click)="onCloseButtonClick()"
+    class="absolute right-0 p-button-rounded p-button-text"></button>
+  <div class="flex">
+    <div class="md:block hidden col-6 p-7 banner-surface-d">
+      <h1 class="mb-6">Contact Us</h1>
+      <p class="mb-6 text-2xl">
+        We're always here to help.</p>
+      <a href="https://goo.gl/maps/uwYEUC7XiGLd2C677" target="_blank">
+        <h4 class="mb-6 text-white">View Address on Google Maps <i class="pi pi-arrow-right"></i></h4>
+      </a>
+      <div class="py-3">
+        <i class="pi pi-phone text-lg"></i>
+        <span class="ml-2 text-lg">+91-8708727160</span>
+      </div>
+      <div class="py-3">
+        <i class="pi pi-envelope text-lg"></i>
+        <a target="_blank" href="mailto:hawkersoftwares@gmail.com"
+          class="ml-2 text-lg text-white">hawkersoftwares@gmail.com</a>
+      </div>
+      <div class="py-3 mb-3">
+        <i class="pi pi-globe text-lg"></i>
+        <a href="https://hawkersoftwares.com" target="_blank"
+          class="ml-2 mb-4 text-lg text-white">https://hawkersoftwares.com</a>
+      </div>
+    </div>
+    <div class="col-12 md:col-6 p-4 md:p-7 mt-6 md:mt-0">
+      <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="name" class="block font-medium pb-2 required">Name</label>
+          <input id="name" type="text" placeholder="Name" pInputText class="w-full" formControlName="name">
+          <small class="p-error" *ngIf="(controls.name.touched || submitted) && controls.name.errors?.required">Enter
+            name</small>
+          <small class="p-error" *ngIf="controls.name.touched && controls.name.errors?.minlength">Invalid
+            name</small>
+        </div>
+        <div class="py-3">
+          <multi-input label="Email" [mode]="email" formControlName="email"></multi-input>
+          <small class="p-error" *ngIf="(controls.email.touched || submitted) && controls.email.errors?.required">Email
+            email</small>
+          <small class="p-error" *ngIf="controls.email.touched && controls.email.errors?.email">Invalid
+            email</small>
+        </div>
+        <div>
+          <multi-input label="Phone" [mode]="phone" formControlName="phone_number"></multi-input>
+          <small class="p-error"
+            *ngIf="(controls.phone_number.touched || submitted) && controls.phone_number.errors?.phone_number?.required">Enter
+            phone number</small>
+          <small class="p-error"
+            *ngIf="controls.phone_number.touched && controls.phone_number.errors?.phone_number?.invalid">Invalid
+            phone number</small>
+        </div>
+        <div class="py-3">
+          <label for="Message" class="block font-medium pb-2 required">Message</label>
+          <textarea pInputTextarea placeholder="Your Message" autoResize rows="3" cols="30" class="w-full"
+            formControlName="message"></textarea>
+          <small class="p-error"
+            *ngIf="(controls.message.touched || submitted) && controls.message.errors?.required">Enter
+            message
+            email</small>
+          <small class="p-error" *ngIf="controls.message.touched && controls.message.errors?.minlength">Invalid message
+          </small>
+        </div>
+        <button pButton pRipple label="submit" class="w-4 px-2" [loading]="submitted" [disabled]="!form.valid"></button>
+      </form>
+    </div>
+  </div>
+</section>

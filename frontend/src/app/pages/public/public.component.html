@@ -1,0 +1,11 @@
+
+<div class="surface-0 overflow-hidden">
+    <q-public-topbar [config]="config" [isLoggedIn]="isLoggedIn" [isEmployee]="isEmployee"></q-public-topbar>
+    <div class="page-container">
+        <p-scrollPanel styleClass="w-full public-scroll-panel">
+            <router-outlet></router-outlet>
+            <q-public-footer [isLoggedIn]="isLoggedIn"></q-public-footer>
+            <p-scrollTop target="parent" styleClass="fixed" [threshold]="200" icon="pi pi-arrow-up"></p-scrollTop>
+        </p-scrollPanel>
+    </div>
+</div>

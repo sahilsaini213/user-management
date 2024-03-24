@@ -1,0 +1,84 @@
+<section>
+  <div class="card">
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+     <div class="md:flex justify-content-between mb-3">
+        <h5 class="my-auto">User</h5>
+        <div class="flex justify-content-between md:justify-content-end">
+            <div class="form-control mr-3 flex">
+              <div class="flex my-auto">
+                <span class="my-auto">Inactive</span>
+                <p-inputSwitch class="mx-2 mt-2" formControlName="is_active"></p-inputSwitch>
+                <span class="my-auto">Active</span>
+              </div>
+            </div>
+            <button pButton pRipple type="submit" label="{{isNew ? 'Create' : 'Update'}}" [loading]="loading"
+            [disabled]="!form.valid || loading"></button>
+         </div>
+     </div>
+      <p-divider></p-divider>
+      <div class="col-12">
+        <div class="p-fluid p-formgrid grid">
+          <div class="field col-12 md:col-6 m-0">
+            <label htmlFor="fname" class="required">First Name</label>
+            <input pInputText id="fname" type="text" placeholder="First Name" formControlName="first_name">
+            <uikit-error [controls]="controls" [submitted]="submitted" name="first_name" placehoher="first_name"></uikit-error>
+          </div>
+          <div class="field col-12 md:col-6 m-0">
+            <label htmlFor="lname">Last Name</label>
+            <input pInputText id="lname" type="text" placeholder="Last Name" formControlName="last_name" />
+          </div>
+          <div class="field col-12 md:col-6 m-0">
+            <multi-input label="Phone" [mode]="multiInputMode" formControlName="phone_number" styleclass="required">
+            </multi-input>
+            <uikit-error [controls]="controls" [submitted]="submitted" name="phone_number" placehoher="phone_number"></uikit-error>
+          </div>
+          <div class="field col-12 md:col-6 m-0">
+            <label for="otp" class="block font-medium vpb-2 mb-0 required">Password</label>
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+              <p-password [toggleMask]="true" formControlName="password" placeholder="password"
+                   styleClass="w-full p-input-icon-right" inputStyleClass="w-full border-noround p-input-icon-right">
+              </p-password>
+            </div>
+            <uikit-error [controls]="controls" [submitted]="submitted" name="password" placeholder="password"></uikit-error>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="Email" class="block font-medium required">Email</label>
+            <input id="Email" type="email" placeholder="Email address" pInputText formControlName="email">
+            <!-- <multi-input label="email" [mode]="multiInputMode" formControlName="phone_number"></multi-input> -->
+            <uikit-error [controls]="controls" [submitted]="submitted" name="email" placehoher="email"></uikit-error>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="Gender" class="block font-medium required">Gender</label>
+            <p-dropdown inputId="genders" placeholder="Select gender" [options]="genders" optionLabel="gender" optionValue="id"
+              formControlName="gender_id" [showClear]="true" filterBy="gender"></p-dropdown>
+            <small class="p-error"
+              *ngIf="(controls.gender_id.touched || submitted) && controls.gender_id.errors?.required">Selecte
+              Gender
+            </small>
+          </div>
+          <div class="field col-12 md:col-6">
+            <uikit-dropdown formControlName="role_id" [config]="roleFieldConfig"></uikit-dropdown>
+            <small class="p-error"
+              *ngIf="(controls.role_id.touched || submitted) && controls.role_id.errors?.required">
+              Select role
+            </small>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="warehouses" class="block font-medium required">Warehouse</label>
+            <p-multiSelect [options]="warehouseList" defaultLabel="Select Warehouses" optionLabel="name"
+              optionValue="id" display="chip" formControlName="warehouses"></p-multiSelect>
+            <small class="p-error"
+              *ngIf="(controls.warehouses.touched || submitted) && controls.warehouses.errors?.required">
+              Select warehouse
+            </small>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="image" class="block font-medium required">Profile Image</label>
+            <uikit-image (onChange)="onImageSelectionChange($event)"></uikit-image>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

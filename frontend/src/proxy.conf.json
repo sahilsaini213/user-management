@@ -1,0 +1,9 @@
+{
+    "/api": {
+      "target": "https://hss-warehouse.web.app/api",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "pathRewrite": {"^/api" : ""}
+    }
+}

@@ -1,0 +1,20 @@
+<section>
+  <div class="card">
+    <div class="flex justify-content-between">
+      <h5 class="my-auto">Role Permissions</h5>
+      <button pButton pRipple type="button" label="Save" class="p-button-outlined" 
+      (click)="savePermissions()" [disabled]="!selectedRole || !hasAnyChange" [loading]="loading"></button>
+    </div>
+    <p-divider></p-divider>
+    <div class="p-fluid grid p-2">
+      <div class="col-12 md:col-6">
+        <!-- <uikit-dropdown (valueChange)="roleUpdated()"  [config]="roleFieldConfig"></uikit-dropdown> -->
+         <p-dropdown inputId="roles" [options]="roles" optionLabel="name" [showClear]="true"
+          placeholder="Select Role" [(ngModel)]="selectedRole" class="w-full" (onChange)="roleUpdated()"></p-dropdown>
+      </div>
+      <div class="col-12" [ngClass]="{disableView: !selectedRole}">
+        <hss-tree [nodes]="modules" (selectionChanged)="selectionChanged($event)"></hss-tree>
+      </div>
+    </div>
+  </div>
+</section>

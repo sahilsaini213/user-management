@@ -1,0 +1,144 @@
+<p-table #dt [value]="selectedItems" dataKey="id" [lazy]="true" (onLazyLoad)="fetchList($event)" [rows]="10" [rowHover]="true" [paginator]="true"
+  [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [totalRecords]="totalRecords" responsiveLayout="scroll">
+  <ng-template pTemplate="caption">
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="date">
+        <div class="flex justify-content-between align-items-center">
+          Date
+          <p-sortIcon field="date"> </p-sortIcon>
+          <p-columnFilter type="date" field="date" display="menu" placeholder="Search by Date"></p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="product">
+        <div class="flex justify-content-between align-items-center">
+          Product
+          <p-sortIcon field="product"> </p-sortIcon>
+          <p-columnFilter type="text" field="product" display="menu" placeholder="Search by Product"></p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="reference">
+        <div class="flex justify-content-between align-items-center">
+          Reference
+          <p-sortIcon field="reference"> </p-sortIcon>
+          <p-columnFilter type="numeric" field="reference" display="menu" placeholder="Search by Reference">
+          </p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="unit">
+        <div class="flex justify-content-between align-items-center">
+          Unit
+          <p-sortIcon field="unit"> </p-sortIcon>
+          <p-columnFilter type="numeric" field="unit" display="menu" placeholder="Search by Unit"></p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="price">
+        <div class="flex justify-content-between align-items-center">
+          Price
+          <p-sortIcon field="price"> </p-sortIcon>
+          <p-columnFilter type="numeric" field="price" display="menu" placeholder="Search by Price"></p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="quantity">
+        <div class="flex justify-content-between align-items-center">
+          Quantity
+          <p-sortIcon field="quantity"> </p-sortIcon>
+          <p-columnFilter type="numeric" field="quantity" display="menu" placeholder="Search by Quantity">
+          </p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="discount">
+        <div class="flex justify-content-between align-items-center">
+          Discount
+          <p-sortIcon field="discount"> </p-sortIcon>
+          <p-columnFilter type="numeric" field="discount" display="menu" placeholder="Search by discount">
+          </p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="tax">
+        <div class="flex justify-content-between align-items-center">
+          Tax
+          <p-sortIcon field="tax"> </p-sortIcon>
+          <p-columnFilter type="numeric" field="tax" display="menu" placeholder="Search by tax"></p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="grand_total" style="min-width:13rem;">
+        <div class="flex justify-content-between align-items-center">
+          Grand Total
+          <p-sortIcon field="grand_total"> </p-sortIcon>
+          <p-columnFilter type="numeric" field="grand_total" display="menu" placeholder="Search by Grand Total">
+          </p-columnFilter>
+        </div>
+      </th>
+      <th>
+        <div class="flex">
+          <span class="m-auto">Action</span>
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr *ngIf="!loading">
+      <td style="min-width: 10rem;">
+        {{item.date}}
+      </td>
+      <td style="min-width: 10rem;">
+        {{item.name}}
+      </td>
+      <td style="min-width: 10rem;">
+        {{item.reference}}
+      </td>
+      <td style="min-width: 8rem;">
+        {{item.unit}}
+      </td>
+      <td style="min-width: 8rem;">
+        {{item.price}}
+      </td>
+      <td style="min-width: 4rem;">
+        <div class="flex">
+          <span class="m-auto">
+            <p-inputNumber [showButtons]="true" size="3rem" placeholder="0" buttonLayout="horizontal"
+              spinnerMode="horizontal" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+            </p-inputNumber>
+          </span>
+        </div>
+      </td>
+      <td>
+        {{item.discount}}
+      </td>
+      <td style="min-width:13rem;">
+        {{item.grand_total}}
+      </td>
+      <td style="min-width: 5rem;">
+        <div class="flex">
+          <button pButton pRipple type="button" icon="pi pi-times" (click)="selecteditem = item;"
+            class="p-button-rounded p-button-danger p-button-text m-auto"></button>
+        </div>
+      </td>
+    </tr>
+    <tr *ngIf="loading">
+      <td *ngFor="let list of selectedItems">
+        <p-skeleton></p-skeleton>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="10">No records found</td>
+    </tr>
+  </ng-template>
+</p-table>
+<div class="col-12 flex">
+  <div class="col-8 hidden md:flex flex-grow-1">
+  </div>
+  <div class="col-12 md:col-4 flex-none">
+    <div *ngFor="let option of billingMenu; index as indx">
+      <div class="flex justify-content-between">
+        <div>{{option.name}}</div> : <div class="t-custom">{{option.data}}</div>
+      </div>
+      <p-divider class='line-{{indx}}'></p-divider>
+    </div>
+  </div>
+</div>
+<p-divider class="custom-divider"></p-divider>

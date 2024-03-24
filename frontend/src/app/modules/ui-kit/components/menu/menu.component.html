@@ -1,0 +1,50 @@
+<div class="layout-menu-container">
+    <ul class="layout-menu" role="menu" (keydown)="onKeydown($event)">
+        <li class="layout-menuitem-category" *ngFor="let item of menuItems; let i = index;" [item]="item" [index]="i"
+            [root]="true" role="none">
+            <div class="layout-menuitem-root-text" [attr.aria-label]="item.label">{{item.label}}</div>
+            <ul role="menu">
+                <li q-menuitem [parentRef]="parentRef" *ngFor="let child of item.items" [item]="child" [index]="i"
+                    role="none"></li>
+            </ul>
+        </li>
+        <ng-container *ngIf="!(menuItems && menuItems.length)">
+            <li class="layout-menuitem-category">
+                <div class="layout-menuitem-root-text">
+                    <p-skeleton width="12rem" styleClass="mb-3" borderRadius="16px"></p-skeleton>
+                </div>
+                <ul role="menu">
+                    <p-skeleton width="7rem" styleClass="mb-2"></p-skeleton>
+                </ul>
+            </li>
+            <li class="layout-menuitem-category">
+                <div class="layout-menuitem-root-text">
+                    <p-skeleton width="18rem" styleClass="mb-3" borderRadius="16px"></p-skeleton>
+                </div>
+                <ul role="menu">
+                    <p-skeleton width="7rem" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton width="7rem" styleClass="mb-2"></p-skeleton>
+                </ul>
+            </li>
+            <li class="layout-menuitem-category">
+                <div class="layout-menuitem-root-text">
+                    <p-skeleton width="18rem" styleClass="mb-3" borderRadius="16px"></p-skeleton>
+                </div>
+                <ul role="menu">
+                    <p-skeleton width="7rem" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton width="7rem" styleClass="mb-2"></p-skeleton>
+                </ul>
+            </li>
+            <li class="layout-menuitem-category">
+                <div class="layout-menuitem-root-text">
+                    <p-skeleton width="18rem" styleClass="mb-3" borderRadius="16px"></p-skeleton>
+                </div>
+                <ul role="menu">
+                    <p-skeleton width="7rem" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton width="7rem" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton width="7rem" styleClass="mb-2"></p-skeleton>
+                </ul>
+            </li>
+        </ng-container>
+    </ul>
+</div>

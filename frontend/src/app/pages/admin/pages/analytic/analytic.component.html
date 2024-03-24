@@ -1,0 +1,54 @@
+<section>
+    <section>
+        <div>
+            <div class="grid">
+                <ng-container *ngIf="!submitted">
+                    <div class="col-12 md:col-6 xl:col-3" *ngFor="let activity of activities; index as indx;">
+                        <div class="card mb-0">
+                            <div class="flex justify-content-between mb-3">
+                                <div>
+                                    <span class="block mb-3 font-medium text-color-b">{{activity.heading}}</span>
+                                    <div class="font-medium text-xl">
+                                        {{summary[activity.key] || '---' }}</div>
+                                </div>
+                                <div class="flex align-items-center justify-content-center border-round"
+                                    [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+                                    <i class="{{ activity.icon }} text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="loading">
+                    <div class="col-12 md:col-6 xl:col-3" *ngFor="let activity of activities;">
+                        <q-skeleton [type]="skeletonType"></q-skeleton>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div>
+            <div class="card mt-2 md:mt-4 mb-0">
+                <h5>Profit & Loss Overview</h5>
+                <p-chart type="line" [data]="lossProfit" height="90%" [options]="lossProfitOptions"></p-chart>
+            </div>
+        </div>
+        <div class="grid p-fluid my-2 md:my-4">
+            <div class="col-12 md:col-6 md:pr-3">
+                <div class="card mb-0">
+                    <h5>Stock Analysis</h5>
+                    <p-chart type="bar" [data]="stockAnalysis" [options]="stockAnalysisOptions"
+                        [style]="{'width': '50%'}">
+                    </p-chart>
+                </div>
+            </div>
+            <div class="col-12 md:col-6 md:pl-3">
+                <div class="card flex flex-column align-items-center mb-0">
+                    <h5 class="text-left w-full">Overall Report Piechart</h5>
+                    <p-chart type="pie" [data]="overallReport" [options]="overallReportOptions"
+                        [style]="{'width': '50%'}">
+                    </p-chart>
+                </div>
+            </div>
+        </div>
+    </section>
+   </section>

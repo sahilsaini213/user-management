@@ -1,0 +1,71 @@
+<section>
+  <div class="card">
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="md:flex justify-content-between mb-3">
+        <h5 class="my-auto">Warehouse</h5>
+        <div class="flex justify-content-between md:justify-content-end">
+          <div class="form-control mr-3 flex">
+            <div class="flex my-auto">
+              <span class="my-auto">Draft</span>
+              <p-inputSwitch class="mx-2 mt-2" formControlName="is_active"></p-inputSwitch>
+              <span class="my-auto">Published</span>
+            </div>
+          </div>
+          <button pButton pRipple type="submit" label="{{isNew ? 'Create' : 'Update'}}" [loading]="loading"
+            [disabled]="!form.valid || loading"></button>
+        </div>
+      </div>
+      <p-divider></p-divider>
+      <div class="col-12">
+        <div class="p-fluid p-formgrid grid">
+          <div class="field col-12 md:col-6">
+            <label for="name" class="block font-medium required">Name</label>
+            <input id="name" type="text" placeholder="Name" pInputText formControlName="name">
+            <uikit-error [controls]="controls" [submitted]="submitted" name="name" placehoher="name"></uikit-error>
+          </div>
+          <div class="field col-12 md:col-6 m-0">
+            <multi-input label="Phone" [mode]="multiInputMode" formControlName="phone_number">
+            </multi-input>
+            <uikit-error [controls]="controls" [submitted]="submitted" name="phone_number"
+              placehoher="phone_number"></uikit-error>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="Email" class="block font-medium required">Email</label>
+            <input id="Email" type="email" placeholder="Email address" pInputText class="" formControlName="email">
+            <!-- <multi-input label="email" [mode]="multiInputMode" formControlName="phone_number"></multi-input>  -->
+            <uikit-error [controls]="controls" [submitted]="submitted" name="email" placehoher="email"></uikit-error>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="country" class="block font-medium required">Country</label>
+            <p-dropdown inputId="countries" placeholder="Select Country" [options]="countries" optionLabel="name"
+              optionValue="id" formControlName="country_id" [showClear]="true"></p-dropdown>
+            <small class="p-error"
+              *ngIf="(controls.country_id.touched || submitted) && controls.country_id.errors?.required">
+              Selecte Country</small>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="city" class="block font-medium required">City</label>
+            <input id="city" type="text" placeholder="Enter city" pInputText class="" formControlName="city">
+            <uikit-error [controls]="controls" [submitted]="submitted" name="city" placehoher="city"></uikit-error>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="address" class="block font-medium required">Address</label>
+            <input id="address" type="text" placeholder="Enter Address" pInputText formControlName="address">
+            <uikit-error [controls]="controls" [submitted]="submitted" name="address"
+              placehoher="address"></uikit-error>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="zip" class="block font-medium required">Zip Code</label>
+            <input id="zip" type="text" placeholder="Enter Zipcode" pInputText formControlName="zipcode">
+            <uikit-error [controls]="controls" [submitted]="submitted" name="zipcode"
+              placehoher="zipcode"></uikit-error>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="image" class="block font-medium required">Warehouse Image</label>
+            <uikit-image (onChange)="onImageSelectionChange($event)"></uikit-image>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

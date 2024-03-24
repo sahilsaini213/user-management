@@ -1,0 +1,21 @@
+<ng-container *ngIf="controls">
+
+    <small class="p-error capitalize" *ngIf="(controls[name]?.touched || submitted) && controls[name]?.errors?.required">
+        Enter {{placehoher || name}}
+    </small>
+    
+    <ng-container *ngIf="controls[name]?.touched && controls[name]?.errors && !controls[name]?.errors?.required">
+        <small class="p-error" *ngIf="validationCaseAdded(controls[name]?.errors)">
+            Invalid {{placehoher || name}} 
+            <!-- {{controls[name]?.errors | json}} -->
+        </small>
+        <small class="p-error" *ngIf="controls[name].errors.minlength">
+            Invalid {{placehoher || name}} - (Min {{controls[name].errors.minlength.requiredLength}} char required)
+        </small>
+        <small class="p-error" *ngIf="controls[name].errors.maxlength">
+            Invalid {{placehoher || name}} - (Max {{controls[name].errors.maxlength.requiredLength}} char required)
+        </small>
+    </ng-container>
+
+</ng-container>
+

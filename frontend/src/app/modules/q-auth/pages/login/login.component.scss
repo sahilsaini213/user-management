@@ -1,0 +1,36 @@
+.disable{
+    cursor: not-allowed;
+    pointer-events: none;
+    color: grey;
+}
+
+.blink {
+    -webkit-animation: glowing 1500ms infinite;
+    -moz-animation: glowing 1500ms infinite;
+    -o-animation: glowing 1500ms infinite;
+    animation: glowing 1500ms infinite;
+  }
+//   @-webkit-keyframes glowing {
+//     0% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+//     50% { background-color: #FF0000; -webkit-box-shadow: 0 0 40px #FF0000; }
+//     100% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+//   }
+  
+//   @-moz-keyframes glowing {
+//     0% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+//     50% { background-color: #FF0000; -moz-box-shadow: 0 0 40px #FF0000; }
+//     100% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+//   }
+  
+  
+  @keyframes glowing {
+    0% { background-color: #71ca9c8f; box-shadow: 0 0 3px #71ca9c8f; }
+    50% { background-color: #9cd8b6; box-shadow: 0 0 40px #9cd8b6; }
+    100% { background-color: #63c695; box-shadow: 0 0 3px #63c695; }
+  }
+  
+  @media (max-width: 760px) {
+    .blink  {
+        right: 2rem;
+    }
+  }

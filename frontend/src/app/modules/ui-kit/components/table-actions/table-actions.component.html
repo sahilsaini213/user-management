@@ -1,0 +1,16 @@
+<span class="pi pi-ellipsis-h text-xl m-auto" (click)="openMenu($event, actionMenu)"></span>
+
+<p-overlayPanel #actionMenu styleClass="action-overlayPanel">
+    <ng-template pTemplate>
+        <p-listbox [options]="actions" (onClick)="actionMenu.toggle($event); onMenuItemClick($event)"
+            [style]="{'width':'15rem', 'border' :'none'}">
+            <ng-template pTemplate="item" let-item>
+                <div class="flex align-items-center">
+                    <div [ngClass]="{'text-color-red': item.label === 'Delete'}"><i class="{{item.icon}} mr-2"></i>
+                        {{item.label}}
+                    </div>
+                </div>
+            </ng-template>
+        </p-listbox>
+    </ng-template>
+</p-overlayPanel>

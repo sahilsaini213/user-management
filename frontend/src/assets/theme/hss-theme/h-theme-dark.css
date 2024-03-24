@@ -1,0 +1,28 @@
+:root {
+    --banner-surface-a: #e3d6ec;
+    --banner-surface-b: #bfabcc;
+    --banner-surface-c: #947AA4;
+    --banner-surface-d: #1e293b;
+
+    --banner-text-a: #616161;
+    --banner-text-b: #616161;
+    --banner-text-c: #ffffff;
+    --banner-text-d: #ffffff;
+    
+    --text-color-error: #B00020;
+    --logo-color: rgb(255 255 255 / 84%);
+}
+
+/* Obviously-Wide_Semibold */
+@font-face {
+    font-family: "Obviously-Wide";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Wide_Semibold"), local("Wide_Semibold"), url("./fonts/Obviously-Wide_Semibold.woff2") format("woff2"), url("./fonts/Obviously-Wide_Semibold.woff") format("woff");
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+label.required::after{
+    color: var(--text-color-error);
+    content: ' *';
+}

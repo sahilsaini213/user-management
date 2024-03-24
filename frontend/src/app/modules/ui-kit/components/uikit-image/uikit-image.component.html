@@ -1,0 +1,28 @@
+  <p-panel>
+    <ng-template pTemplate="header">
+      <input class="hidden" #imageRef type="file" (change)="onImageSelect(imageRef)"
+        [disabled]="images.length >= maxLimit">
+
+      <div class="flex justify-content-between col-12">
+        <button style="width:8em;" pButton pRipple type="button" label="Choose"
+        class="ml-1 my-auto p-button-sm p-button-outlined" icon="pi pi-arrow-up" [disabled]="images.length >= maxLimit"
+        (click)="imageRef.click();"></button>
+        <div class="my-auto mx-2">
+          <a (click)="removeImage(null, true)" [disabled]="images.length >= 2">Clear All</a>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <div class="flex flex-wrap">
+        <ng-container *ngFor="let image of images; index as indx;">
+          <div class="relative p-fieldset mr-3">
+            <p-image styleClass="m-1" *ngIf="image?.url" src="{{image.url}}" height="80" width="80" [preview]="true">
+            </p-image>
+            <button pButton pRipple icon="pi pi-times"
+              class="p-button-rounded p-button-secondary p-button-outlined custom-btn"
+              (click)="removeImage(indx)"></button>
+          </div>
+        </ng-container>
+      </div>
+    </ng-template>
+  </p-panel>

@@ -1,0 +1,6 @@
+<label for="value" class="block font-medium pb-2 required">Shopify Store</label>
+<div class="p-inputgroup">
+  <input [name]="label" type="text" [placeholder]="placeholder" pInputText [(ngModel)]="value" (blur)="detectChanges()"
+  class="p-input-text" [class.ng-invalid]="(touched || dirty) && !isValid" [disabled]="disabled">
+  <span class="p-inputgroup-addon">.myshopify.com</span>
+</div>

@@ -1,0 +1,23 @@
+<section>
+  <div class="col-12">
+    <form class="form" [formGroup]="brandForm" (ngSubmit)="onSubmit()">
+      <div class="p-fluid p-formgrid grid">
+        <div class="field col-12 mt-2 md:mt-0">
+          <label for="name" class="block font-medium pb-2 required">Name</label>
+          <input id="name" type="text" placeholder="Name" pInputText formControlName="name">
+          <uikit-error [controls]="controls" [submitted]="submitted" name="name" placehoher="name"></uikit-error>
+        </div>
+        <div class="field col-12">
+          <label class="block font-medium pb-2 mb-2 required">Logo</label>
+          <uikit-image (onChange)="onImageSelectionChange($event)"></uikit-image>
+        </div>
+      </div>
+      <div class="flex justify-content-end">
+        <button pButton pRipple type="button" [disabled]="submitted" label="Cancel"
+          class="p-button-outlined mr-3" (click)="onClose()"></button>
+        <button pButton pRipple type="submit" [loading]="submitted" [disabled]="!brandForm.valid || !brand?.image?.url || submitted"
+          label="{{isNew ? 'Create' : 'Update'}}" class="p-button-outlined"></button>
+      </div>
+    </form>
+  </div>
+</section>

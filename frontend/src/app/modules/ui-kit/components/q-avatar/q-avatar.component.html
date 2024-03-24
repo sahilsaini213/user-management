@@ -1,0 +1,15 @@
+<p-avatar *ngIf="!skeleton"
+    class="cursor-pointer" 
+    [image]="avatar?.url"
+    [label]="avatar?.label"
+    [size]="avatar.size" 
+    [shape]="avatar.shape"
+    icon="{{ (!avatar?.url && !avatar?.label) ? avatar.icon : null }}"
+>
+</p-avatar>
+<p-skeleton *ngIf="skeleton"
+    [shape]="avatar.shape" 
+    width="{{avatar.size === 'large' ? '3.4rem' : '4rem'}}" 
+    height="{{avatar.size === 'large' ? '3.4rem' : '4rem'}}"
+    borderRadius="{{avatar.shape !== 'circle' ? '16px' : ''}}"
+></p-skeleton>

@@ -1,0 +1,36 @@
+<div class="layout-wrapper"
+  [ngClass]="{'layout-overlay': isOverlay(),
+                                'layout-static': isStatic(),
+                                'layout-theme-light':!config.dark,
+                                'layout-theme-dark':config.dark,
+                                'layout-overlay-sidebar-active': overlayMenuActive,
+                                'layout-static-sidebar-inactive': staticMenuInactive,
+                                'layout-mobile-sidebar-active':menuActiveMobile,
+                                'p-ripple-disabled': !config.ripple, 'p-input-filled': config.inputStyle === 'filled'}">
+  <q-topbar [parentRef]="this" [navbar]="navbar" [hideSideMenuButton]="true"></q-topbar>
+  <div class="layout-main-container mx-auto">
+    <div class="layout-main">
+      <section>
+        <div class="card flex flex-wrap col-12 justify-content-between gap-3 m-0 mb-3 md:mb-5">
+          <div class="">
+            <h2 class="my-auto">Hi {{userName}} </h2>
+            <h4 class="ml-3">Welcome to <span class="mb-0 mr-7">HSS</span></h4>
+          </div>
+          <div class="col-4 flex justify-content-end">
+            <p-tag styleClass="mr-2" severity="warning" value="No Warehouse Assigned"></p-tag>
+          </div>
+        </div>
+      </section>
+      <section class="card">
+        <div class="flex justify-content-between p-3">
+          <h5 class="my-auto">Please contact to Owner to get <strong>WAREHOUSE</strong> assigned.</h5>
+        </div>
+      </section>
+    </div>
+    <div class="layout-footer">
+      © HWIMS INC. 2023
+    </div>
+  </div>
+  <q-theme (toggleMenu)="toggleMenu($event)" (configClick)="onConfigClick($event)"></q-theme>
+  <div *ngIf="menuActiveMobile" class="layout-mask p-component-overlay"></div>
+</div>

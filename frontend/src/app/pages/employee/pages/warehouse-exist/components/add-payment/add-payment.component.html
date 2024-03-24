@@ -1,0 +1,68 @@
+<section>
+  <form class="form" [formGroup]="addPaymentForm" (ngSubmit)="onSubmit()">
+    <div class="col-12">
+      <div class="p-fluid p-formgrid grid">
+        <div class="field col-12 md:col-6">
+          <label for="received_amount" class="block font-medium pb-2 required">Received Amount</label>
+          <p-inputNumber inputId="received_amount" placeholder="INR 0" mode="currency" currency="INR"
+            currencyDisplay="code" formControlName="received_amount"></p-inputNumber>
+          <small class="p-error"
+            *ngIf="(controls.received_amount.touched || submitted) && controls.received_amount.errors?.required">
+            Enter Received Amount</small>
+        </div>
+        <div class="field col-12 md:col-6">
+          <label for="paying_amount" class="block font-medium pb-2 required">Paying Amount</label>
+          <p-inputNumber inputId="paying_amount" placeholder="INR 0" mode="currency" currency="INR"
+            currencyDisplay="code" formControlName="paying_amount"></p-inputNumber>
+          <small class="p-error"
+            *ngIf="(controls.paying_amount.touched || submitted) && controls.paying_amount.errors?.required">
+            Enter Paying Amount</small>
+        </div>
+        <div class="field col-12 md:col-6">
+          <label for="change" class="block font-medium pb-2">Change</label>
+          <p-inputNumber inputId="change" placeholder="INR 0" mode="currency" currency="INR" currencyDisplay="code"
+            formControlName="change"></p-inputNumber>
+        </div>
+        <div class="field col-12 md:col-6">
+          <label for="payment_type" class="block font-medium pb-2 required">Payment Type</label>
+          <p-dropdown [options]="paymentTypes" optionLabel="type" optionValue="id" placeholder="Choose Payment Type"
+            [showClear]="true" formControlName="payment_type_id">
+          </p-dropdown>
+          <small class="p-error"
+            *ngIf="(controls.payment_type_id.touched || submitted) && controls.payment_type_id.errors?.required">
+            Select Payment Type</small>
+        </div>
+        <div class="field col-12 md:col-6">
+          <label for="card_number" class="block font-medium pb-2">Card Number</label>
+          <p-inputMask mask="9999 - 9999 - 9999 - 9999" placeholder="XXXX - XXXX - XXXX - XXXX" slotChar="XXXX-XXXX-XXXX-XXXX"
+            formControlName="card_number"></p-inputMask>
+          <small class="p-error"
+            *ngIf="(controls.card_number.touched || submitted) && controls.card_number.errors?.required">
+            Enter Card Number</small>
+        </div>
+        <div class="field col-12 md:col-6">
+          <label for="expired_date" class="block font-medium pb-2">Expired Date</label>
+          <p-inputMask mask="99/9999" placeholder="MM/YYYY" slotChar="MM/YYYY" formControlName="expired_date">
+          </p-inputMask>
+          <small class="p-error"
+            *ngIf="(controls.expired_date.touched || submitted) && controls.expired_date.errors?.required">
+            Enter Expired Date</small>
+        </div>
+        <div class="field col-12">
+          <label for="sales_note" class="block font-medium pb-2">Sales Note</label>
+          <textarea placeholder="Type text" rows="3" cols="30" pInputTextarea [autoResize]="true"
+            formControlName="sales_note"></textarea>
+          <small class="p-error"
+            *ngIf="(controls.sales_note.touched || submitted) && controls.sales_note.errors?.required">
+            Write staff remark</small>
+        </div>
+        <div class="field col-12 mb-0 flex justify-content-end">
+          <button pButton pRipple type="button" [disabled]="submitted" label="Cancel"
+            class="p-button-outlined mr-3" (click)="onClose()"></button>
+          <button pButton pRipple type="submit" [loading]="submitted" [disabled]="!addPaymentForm.valid || submitted"
+            label="Save"></button>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

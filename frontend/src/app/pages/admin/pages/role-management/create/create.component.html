@@ -1,0 +1,25 @@
+<section>
+    <div>
+        <div class="col-12">
+            <form class="form" [formGroup]=" roleform" (ngSubmit)="onSubmit()">
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12">
+                        <label for="name" class="block font-medium pb-2 required">Role</label>
+                        <input id="name" type="text" placeholder="Role Name" pInputText formControlName="name">
+                        <uikit-error [controls]="controls" [submitted]="submitted" name="name" placehoher="name"></uikit-error>
+                    </div>
+                    <div class="field col-12">
+                        <label for="Message" class="block font-medium pb-2 required">Description</label>
+                        <textarea pInputTextarea placeholder="Your Message" autoResize rows="3" cols="30"
+                            formControlName="message"></textarea>
+                            <uikit-error [controls]="controls" [submitted]="submitted" name="message" placehoher="message"></uikit-error>
+                    </div>
+                    <div class="pl-3">
+                        <button pButton pRipple type="submit" label="{{isNew ? 'Create' : 'Update'}}" [loading]="submitted"
+                            [disabled]="!roleform.valid"></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

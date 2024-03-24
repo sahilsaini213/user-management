@@ -1,0 +1,53 @@
+<p-panel>
+  <ng-template pTemplate="header">
+    <div class="flex justify-content-between">
+      <button pButton pRipple type="button" label="Add Data" [disabled]="list.length > 1"
+        class="ml-1 my-auto p-button-sm p-button-outlined" (click)="addData()"></button>
+      <div class="my-auto mx-2">
+        <button pButton pRipple type="button" label="Clear All" class="ml-1 my-auto p-button-sm p-button-outlined"
+          (click)="removeData()" [disabled]="list.length === 1"></button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <p-table #dt1 dataKey="id" [value]="list" [lazy]="true" (onLazyLoad)="fetchList($event)" responsiveLayout="scroll"
+      [scrollable]="true" scrollHeight="350px" styleClass="p-datatable-customers" [rows]="20">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="min-width:200px">
+            Email
+          </th>
+          <th style="min-width:170px;">
+            <div class="flex justify-content-center">
+              User Type
+            </div>
+          </th>
+          <th>
+            <div class="flex justify-content-center">
+              Action
+            </div>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-user>
+        <tr *ngIf="!loading">
+          <td style="min-width:200px">
+            {{user.email}}
+          </td>
+          <td style="min-width:170px">
+            <div class="flex justify-content-center">
+              <p-chip [style]="{'width': '135px'}" [label]="getUserType(user.type)" class="m-auto"
+                styleClass="badge flex justify-content-center {{user.type}}"></p-chip>
+            </div>
+          </td>
+          <td>
+            <div class="flex justify-content-center">
+              <button pButton pRipple type="button" label="Login" class="m-auto p-button-sm p-button-outlined"
+                (click)="onClose(user)"></button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </ng-template>
+</p-panel>

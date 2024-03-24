@@ -1,0 +1,21 @@
+<div class="flex align-items-center" [class.justify-content-center]="column.hasCenter">
+    <div>{{column.label}}
+        <p-sortIcon *ngIf="column.hasSorting" [field]="column.key"></p-sortIcon>
+    </div>
+    <div *ngIf="column.hasFilter">
+            <p-columnFilter *ngIf="column.options" field="column.key" matchMode="equals" display="menu" [showOperator]="false"
+                [showAddButton]="false" [showMatchModes]="false">
+                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                    <p-dropdown [ngModel]="value" [options]="column.options" (onChange)="filter($event.value)"
+                        placeholder="Status">
+                        <ng-template let-option pTemplate="item">
+                            <p-chip class="flex" [label]="option.label"
+                                styleClass="mx-auto mr-2 badge capitalize {{option.label}}"></p-chip>
+                        </ng-template>
+                    </p-dropdown>
+                </ng-template>
+            </p-columnFilter>
+            <p-columnFilter *ngIf="!column.options" [type]="column.type" [field]="column.key" display="menu" [showOperator]="column.showOperator"
+            [showAddButton]="false" [showMatchModes]="column.showMatchModes"></p-columnFilter>
+    </div>
+</div>

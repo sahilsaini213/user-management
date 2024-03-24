@@ -1,0 +1,11 @@
+:host ::ng-deep {
+    .layout-main-container{
+        padding: 7rem 2rem 2rem 2rem;
+    }
+    .p-tabview-nav-container {
+        .p-tabview-nav {
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+}

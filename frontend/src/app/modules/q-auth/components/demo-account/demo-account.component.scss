@@ -1,0 +1,25 @@
+:host::ng-deep {
+  .p-panel .p-panel-content {
+    min-height: 400px;
+  }
+
+  td {
+    padding: 0.4rem 1rem !important;
+  }
+
+  .badge {
+    color: var(--banner-text-a);
+
+    &.super-admin {
+      background: #cde1ed;
+    }
+
+    &.admin {
+      background: #dac5d7;
+    }
+
+    &.employee {
+      background: #eef1dc;
+    }
+  }
+}

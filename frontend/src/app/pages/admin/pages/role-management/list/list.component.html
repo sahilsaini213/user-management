@@ -1,0 +1,56 @@
+<div class="card">
+  <div class="flex justify-content-between mb-3">
+    <h5 class="my-auto">Roles</h5>
+    <button pButton pRipple type="button" label="Add Role" class="p-button-outlined"
+      (click)="showAddRoleForm(true)"></button>
+  </div>
+  <p-table responsiveLayout="scroll" [value]="list" dataKey="id" [lazy]="true" (onLazyLoad)="fetchList($event)"
+    [rows]="10" [rowHover]="true" [paginator]="true" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+    [totalRecords]="totalRecords" responsiveLayout="scroll">
+    <ng-template pTemplate="caption">
+      <div class="flex justify-content-between flex-column sm:flex-row">
+        <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
+          (click)="clear(dt1)"></button>
+        <span class="p-input-icon-left mb-2">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" #filter (input)="dt1.filterGlobal($event.target.value, 'contains')"
+            placeholder="Search Keyword" class="w-full" />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let column of columns" [pSortableColumn]="column.key" [style]="column.style">
+          <uikit-table-column [column]="column"></uikit-table-column>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-role>
+      <tr *ngIf="!loading">
+        <td *ngFor="let column of columns" [style]="column.style">
+          <ng-container [ngSwitch]="column.key">
+
+            <table-actions *ngSwitchCase="'action'" class="flex justify-content-center" [actions]="tableActions"
+              [activatedRoute]="activatedRoute" (onOpenMenu)="selectedRow = role;"
+              [selectedRow]="selectedRow"></table-actions>
+
+            <span *ngSwitchDefault>
+              {{role[column.key]}}
+            </span>
+
+          </ng-container>
+        </td>
+      </tr>
+      <tr *ngIf="loading">
+        <td *ngFor="let List of list">
+          <p-skeleton></p-skeleton>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4">No records found</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

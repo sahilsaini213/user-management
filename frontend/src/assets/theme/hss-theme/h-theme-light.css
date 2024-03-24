@@ -1,0 +1,75 @@
+:root {
+    --banner-surface-a: #a9d9bd2e;
+    --banner-surface-b: #71ca9c8f;
+    --banner-surface-c: #9cd8b6;
+    --banner-surface-d: #63c695;
+    --banner-surface-e: #017e4bba;
+
+    --banner-text-a: #616161;
+    --banner-text-b: #898686e0;
+    --banner-text-c: #ffffff;
+    --banner-text-d: #ffffff;
+    --banner-text-e: #4d4848;
+
+    --text-color-error: #B00020;
+    --logo-color: rgb(0 0 0 / 68%);
+
+    --color-warn: #7f6003;
+    --color-info: #01579B;
+    --color-success: #1B5E20;
+    --color-error: var(--text-color-error);
+
+
+    --color-light-warn: var(--yellow-300);
+    --color-light-info: var(--blue-300);
+    --color-light-success: var(--green-300);
+
+    --bg-color-warn: #FFECB3;
+    --bg-color-info: #B3E5FC;
+    --bg-color-success: #C8E6C9;
+    --bg-color-error: #FFCDD2;
+
+
+}
+
+/* Obviously-Wide_Semibold */
+@font-face {
+    font-family: "Obviously-Wide";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Wide_Semibold"), local("Wide_Semibold"), url("./fonts/Obviously-Wide_Semibold.woff2") format("woff2"), url("./fonts/Obviously-Wide_Semibold.woff") format("woff");
+    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+label.required::after {
+    color: var(--text-color-error);
+    content: ' *';
+}
+
+.brand-details .brand-logo {
+    border-color: var(--banner-text-c);
+}
+
+
+.p-datatable-table .p-datatable-tbody>tr {
+    color: var(--banner-text-b) !important;
+}
+
+.SENT, .Sent, .sent {
+    background-color: var(--color-light-warn);
+}
+
+.DRAFT, .Draft, .draft {
+    background-color: var(--color-light-info);
+    color: #fff;
+}
+
+.UPCOMING, .Upcoming, .upcoming {
+    background-color: var(--color-light-success);
+    color: #fff;
+}
+
+.EXPIRED, .Expired, .expired {
+    background-color: var(--bg-color-error);
+    color: #fff;
+}

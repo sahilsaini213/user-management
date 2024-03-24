@@ -1,0 +1,64 @@
+<div>
+    <div class="card col-12 p-3">
+        <div class="flex justify-content-between">
+            <h5 class="px-2 m-0">Personal Settings</h5>
+            <a class="flex align-items-baseline text-900" (click)="back()" style="cursor: pointer;">
+                <i class="pi pi-sign-out"></i>
+                <h5 class="m-0 pl-2">Exit</h5>
+            </a>
+        </div>
+        <div class="col-12">
+            <p-tabMenu styleClass="mb-2" [model]="settingTabs" [activeItem]="settingTabs[activeTabIndex]">
+            </p-tabMenu>
+        </div>
+        <div class="col-12">
+            <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div *ngIf="activeTab === 'userInfo'">
+                    <div class="p-fluid grid">
+                        <div class="field col-12 md:col-6 m-0">
+                            <label htmlFor="fname" class="required">First Name</label>
+                            <input pInputText id="fname" type="text" placeholder="First Name"
+                                formControlName="first_name">
+                            <uikit-error [controls]="controls" [submitted]="submitted" name="first_name"
+                                placehoher="first name"></uikit-error>
+                        </div>
+                        <div class="field col-12 md:col-6 m-0">
+                            <label htmlFor="lname">Last Name</label>
+                            <input pInputText id="lname" type="text" placeholder="Last Name"
+                                formControlName="last_name" />
+                        </div>
+                        <div class="field col-12 md:col-6 m-0">
+                            <label for="otp" class="block font-medium vpb-2 mb-0">Password</label>
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+                                <p-password [toggleMask]="true" formControlName="password"
+                                    styleClass="w-full p-input-icon-right"
+                                    inputStyleClass="w-full border-noround p-input-icon-right">
+                                </p-password>
+                            </div>
+                            <uikit-error [controls]="controls" [submitted]="submitted" name="password"
+                                placehoher="password"></uikit-error>
+                        </div>
+                        <div class="field col-12 md:col-6 m-0">
+                            <multi-input label="Email" [mode]="email" formControlName="email"></multi-input>
+                            <uikit-error [controls]="controls" [submitted]="submitted" name="email"></uikit-error>
+                        </div>
+                        <div class="field col-12 md:col-6 m-0">
+                            <multi-input label="Phone" [mode]="phone" formControlName="phone_number"></multi-input>
+                            <uikit-error [controls]="controls" [submitted]="submitted" name="phone_number"
+                                placehoher="phone number"></uikit-error>
+                        </div>
+                        <div class="field col-12 md:col-6">
+                            <label for="image" class="block font-medium required">Profile Image</label>
+                            <uikit-image (onChange)="onImageSelectionChange($event)"></uikit-image>
+                        </div>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button pButton pRipple type="submit" label="Update" class="pButton md:w-5rem w-full"
+                            [loading]="submitted" [disabled]="!form?.valid || submitted"></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

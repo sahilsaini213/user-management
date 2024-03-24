@@ -1,0 +1,10 @@
+<label for="emailPhone" class="block font-medium pb-2" [class.required]="required" [innerText]="label"></label>
+<div class="p-inputgroup w-full relative">
+  <span class="p-inputgroup-addon" *ngIf="isPhone" (click)="disabled ? '' : countryCodeMenu.toggle($event)" [class.disabled]="disabled">
+    {{countryCode.id}}
+  </span>
+  <input [name]="label" [placeholder]="label" pInputText [(ngModel)]="value" (blur)="detectChanges()"
+    class="p-input-text" type="{{isPhone ? 'tel' : 'email'}}" [class.ng-invalid]="(touched || dirty) && !isValid" [disabled]="disabled">
+  <p-menu #countryCodeMenu [popup]="true" [model]="countryCodes"
+  styleClass="menu-custom-style"></p-menu>
+</div>

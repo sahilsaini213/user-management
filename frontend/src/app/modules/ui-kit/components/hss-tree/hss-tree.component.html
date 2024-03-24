@@ -1,0 +1,31 @@
+<div class="col-12 flex border-1 p-0 border-c" *ngFor="let node of nodes;first as isFirstModule"
+    [class.border-top-none]="!isFirstModule">
+    <div class="col-3 flex border-right-1 border-c">
+        <div class="flex my-auto">
+            <p-checkbox id="{{node.id}}" [(ngModel)]="node.selected" (onChange)="treeChanged(node)"
+                [binary]="true" styleClass="mr-2"></p-checkbox>
+            <label for="{{node.id}}" class="my-auto font-bold">{{node.title}}</label>
+        </div>
+    </div>
+    <div class="col-9 p-0" *ngIf="node.childs?.length" [class.flex]="!node.childs[0].childs?.length">
+        <div class="{{!sub_node.childs?.length ? 'col-3' : 'col-12'}} flex border-c p-0" *ngFor="let sub_node of node.childs;last as isLastSubModule"
+            [class.border-bottom-1]="!isLastSubModule && sub_node.childs?.length">
+            <div class="{{sub_node.childs?.length ? 'col-3 border-right-1' : 'col-12'}} flex border-c py-4">
+                <div class="flex my-auto">
+                    <p-checkbox id="{{sub_node.id}}" (onChange)="treeChanged(sub_node, node)"
+                        [(ngModel)]="sub_node.selected" [binary]="true" styleClass="mr-2"></p-checkbox>
+                    <label for="{{sub_node.id}}" class="my-auto font-medium">{{sub_node.title}}</label>
+                </div>
+            </div>
+            <div class="col-9 flex justify-content-between" *ngIf="sub_node.childs?.length">
+                <div class="flex mb-0" *ngFor="let leafNode of sub_node.childs; index as indx;">
+                    <p-checkbox id="{{leafNode.title}}-{{leafNode.id}}-{{indx}}"
+                        (onChange)="treeChanged(leafNode, sub_node, node)" [(ngModel)]="leafNode.selected"
+                        [binary]="true" styleClass="mr-2"></p-checkbox>
+                    <label for="{{sub_node.title}}-{{leafNode.id}}-{{indx}}"
+                        class="my-auto">{{leafNode.title}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

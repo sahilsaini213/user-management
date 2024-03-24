@@ -1,0 +1,19 @@
+@import "/src/assets/sass/layout/variables";
+
+.pricing-card:hover {
+  border: 2px solid var(--banner-surface-c) !important;
+}
+
+.f-thick {
+  font-weight:900;
+}
+.section-pad {
+  padding: 4rem 0rem 4rem 0rem;
+}
+.box-shadow {
+  box-shadow: 1px -1px 3px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 2px rgb(0 0 0 / 12%);
+}
+.m-li{
+  margin-top: 2rem;
+  margin-bottom: 2.5rem;
+}

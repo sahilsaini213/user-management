@@ -1,0 +1,10 @@
+<router-outlet (activate)='onActivate($event)'></router-outlet>
+<!-- https://www.primefaces.org/primeng/toast -->
+<p-toast position="top-center"></p-toast>
+
+<div class="spinner-container" *ngIf="progressSpinner">    
+    <div class="sk-square-jelly-box m-auto">
+        <div class="banner-surface-c"></div>
+        <div class="text-color-a"></div>
+    </div>
+</div>
