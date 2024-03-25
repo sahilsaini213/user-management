@@ -2,7 +2,7 @@
   <div class="surface-0 flex flex-column align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
     <div class="text-center mt-0 mb-7 md:hidden">
       <a class="hwims-logo cursor-pointer" (click)="routeService.navigateWithPreserve('')">
-        <h3>HWIMS</h3>
+        <h3>Users</h3>
       </a>
     </div>
     <div class="flex justify-content-center md:m-auto" style="min-height: 550px">
@@ -34,48 +34,6 @@
                   </div>
                   <button pButton pRipple label="Sign In" class="w-full p-button-rounded vmt-3"
                     [loading]="submitted" [disabled]="!passwordForm.valid"
-                    type="submit"></button>
-                </div>
-              </form>
-            </p-tabPanel>
-            <p-tabPanel header="Phone">
-              <form class="form" [formGroup]="form" (ngSubmit)="login()" novalidate>
-                <div class="vpy-4">
-                  <div class="vpb-4">
-                    <multi-input label="Phone" [mode]="multiInputMode" [disabled]="isVerifingOTP"
-                      formControlName="username"></multi-input>
-                    <small class="p-error"
-                      *ngIf="(form.controls.username.touched || submitted) && form.controls.username.errors?.phone_number?.required">Enter
-                      phone number</small>
-                    <small class="p-error"
-                      *ngIf="(form.controls.username.touched || submitted) && form.controls.username.errors?.email?.required">Enter
-                      email</small>
-                    <small class="p-error"
-                      *ngIf="form.controls.username.touched && form.controls.username.errors?.phone_number?.invalid">Invalid
-                      phone number</small>
-                    <small class="p-error"
-                      *ngIf="form.controls.username.touched && form.controls.username.errors?.email?.invalid">Invalid
-                      email</small>
-                  </div>
-                  <div class="vpb-4" *ngIf="isVerifingOTP">
-                    <label for="otp" class="block font-medium vpb-2">OTP</label>
-                    <input id="otp" type="text" placeholder="Verification code" pInputText class="w-full"
-                      formControlName="otp">
-                    <small class="p-error"
-                      *ngIf="(form.controls.otp.touched || submitted) && form.controls.otp.errors?.required">Enter
-                      OTP</small>
-                    <small class="p-error"
-                      *ngIf="form.controls.otp.touched && (form.controls.otp.errors?.pattern || form.controls.otp.errors?.minlength || form.controls.otp.errors?.maxlength)">Invalid
-                      OTP</small>
-                  </div>
-                  <div class="text-center vmb-4" *ngIf="isVerifingOTP">
-                    Haven't received,<a (click)="resentOTP()" type="submit"> Resend OTP </a>
-                  </div>
-                  <button pButton pRipple label="Verify" class="w-full p-button-rounded" (click)="verifyOTP()"
-                    *ngIf="isVerifingOTP" [loading]="submitted" type="submit"
-                    [disabled]="!form.controls.otp.valid"></button>
-                  <button pButton pRipple label="Sign In" class="w-full p-button-rounded vmt-3"
-                    *ngIf="!isVerifingOTP" [loading]="submitted" [disabled]="!form.controls.username.valid"
                     type="submit"></button>
                 </div>
               </form>
