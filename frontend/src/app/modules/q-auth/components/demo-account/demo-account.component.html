@@ -32,12 +32,12 @@
       <ng-template pTemplate="body" let-user>
         <tr *ngIf="!loading">
           <td style="min-width:200px">
-            {{user.email}}
+            {{user?.email}}
           </td>
           <td style="min-width:170px">
             <div class="flex justify-content-center">
-              <p-chip [style]="{'width': '135px'}" label="{{user.type}}" class="m-auto"
-                styleClass="badge flex justify-content-center {{user.type}}"></p-chip>
+              <p-chip [style]="{'width': '135px'}" label="{{user?.type}}" class="m-auto"
+                styleClass="badge flex justify-content-center {{user?.type}}"></p-chip>
             </div>
           </td>
           <td>

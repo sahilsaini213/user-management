@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { FormControlService } from 'src/app/service/form-control.service';
 import { MultiInputMode } from 'src/app/modules/ui-kit/components/multi-input/multi-input.component';
 import { ToastService } from 'src/app/service/toast.service';
@@ -43,10 +43,12 @@ export class AdminFormComponent extends BaseForm implements OnInit {
   }
 
   formInit(admin: Partial<IUser> = {}) {
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?\/\\~`\|\-]).{8,}$/;
     let adminForm = new FormGroup({
-      first_name: this.formControlService.getNameControl(admin.first_name),
+      first_name: this.formControlService.getFormControl(admin.first_name,[Validators.pattern(/^[A-Za-z\s\-]+$/)]),
       last_name: this.formControlService.getFormControl(admin.last_name),
-      password: this.formControlService.getFormControl(admin.password),
+      password: this.formControlService.getFormControl(admin.password,  [Validators.pattern(passwordPattern)]),
+      confirmPassword: this.formControlService.getFormControl(admin.password),
       email: this.formControlService.getEmailControl(admin.email),
       is_active: this.formControlService.getBooleanControl(admin.is_active),
       phone_number: this.formControlService.getMultiInputControl(admin.phone_number),
@@ -57,11 +59,22 @@ export class AdminFormComponent extends BaseForm implements OnInit {
 
   onSubmit() {
     const payload = { ...this.form.getRawValue(), image: this.user.image }
+    delete payload.confirmPassword;
     let userReq = this.isNew ? this.adminService.create(payload) : this.adminService.update(this.id, payload);
     userReq.subscribe(() => {
       this.toastService.success({ message: `Request has been ${this.isNew ? 'created' : 'updated'} successfully.`, sticky: false });
       this.routeService.navigateWithPreserve('../', { relativeTo: this.activatedRoute });
     });
+  }
+
+  passwordMatchValidator(formGroup: FormGroup) {
+    const passwordControl = this.form.get('password');
+    const confirmPasswordControl =this.form.get('confirmPassword');
+    if (passwordControl && confirmPasswordControl && passwordControl.value !== confirmPasswordControl.value) {
+      confirmPasswordControl.setErrors({ passwordMismatch: true });
+    } else {
+      confirmPasswordControl.setErrors(null);
+    }
   }
 
   ngOnDestroy(): void {

@@ -30,7 +30,7 @@ export class TableActionsComponent implements OnInit {
 
   onMenuItemClick({option}) {
     if(option.onConfirm) {
-      this.confirmation(option);
+      this.confirmation(option, this.selectedRow,);
     } else if (option?.click) {
       option.click();
     }
@@ -42,13 +42,14 @@ export class TableActionsComponent implements OnInit {
     }
   }
 
-  confirmation(option) {
+  confirmation(option, data) {
     const ref = this.dialogService.open(ConfirmationComponent, {
-      header: 'Want to delete?',
+      header: `Want to delete ${data.first_name} user`,
       dismissableMask: true,
       styleClass: 'w-9 md:w-5',
       data: {
         onConfirm: option.onConfirm
+
       }
     });
     ref.onClose.subscribe();

@@ -26,7 +26,7 @@
                     <label htmlFor="lname">Last Name</label>
                     <input pInputText id="lname" type="text" placeholder="Last Name" formControlName="last_name" />
                 </div>
-                <div class="field col-12 md:col-6 m-0">
+                <!-- <div class="field col-12 md:col-6 m-0">
                     <label for="otp" class="block font-medium vpb-2 mb-0">Password</label>
                     <div class="p-inputgroup">
                       <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
@@ -35,6 +35,39 @@
                       </p-password>
                     </div>
                     <uikit-error [controls]="controls" [submitted]="submitted" name="password" placehoher="password"></uikit-error>
+                  </div>
+                  <div class="field col-12 md:col-6 m-0">
+                    <label for="otp" class="block font-medium vpb-2 mb-0">confrim password</label>
+                    <div class="p-inputgroup">
+                      <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+                      <p-password [toggleMask]="true" formControlName="password" 
+                           styleClass="w-full p-input-icon-right" inputStyleClass="w-full border-noround p-input-icon-right">
+                      </p-password>
+                    </div>
+                    <uikit-error [controls]="controls" [submitted]="submitted" name="password" placehoher="password"></uikit-error>
+                  </div> -->
+                  <div class="field col-12 md:col-6 m-0">
+                    <label for="password" class="block font-medium vpb-2 mb-0">Password</label>
+                    <div class="p-inputgroup">
+                      <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+                      <p-password formControlName="password" [toggleMask]="true" styleClass="w-full p-input-icon-right"
+                        inputStyleClass="w-full border-noround p-input-icon-right"></p-password>
+                    </div>
+                    <div *ngIf="form.get('password').invalid && (form.get('password').dirty || form.get('password').touched)">
+                      <span *ngIf="form.get('password').errors?.required" class="text-red-500">Password is required</span>
+                    </div>
+                  </div>
+                  <div class="field col-12 md:col-6 m-0">
+                    <label for="confirmPassword" class="block font-medium vpb-2 mb-0">Confirm Password</label>
+                    <div class="p-inputgroup">
+                      <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+                      <p-password formControlName="confirmPassword" [toggleMask]="true" (onBlur)="passwordMatchValidator($event)" styleClass="w-full p-input-icon-right"
+                        inputStyleClass="w-full border-noround p-input-icon-right"></p-password>
+                    </div>
+                    <div *ngIf="form.get('confirmPassword').invalid && (form.get('confirmPassword').dirty || form.get('confirmPassword').touched)">
+                      <span *ngIf="form.get('confirmPassword').errors?.required" class="text-red-500">Confirm Password is required</span>
+                      <span *ngIf="form.get('confirmPassword').errors?.passwordMismatch" class="text-red-500">Passwords do not match</span>
+                    </div>
                   </div>
                 <div class="field col-12 md:col-6 m-0">
                     <label htmlFor="email" class="required">Email</label>
