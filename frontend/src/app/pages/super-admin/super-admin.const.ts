@@ -2,16 +2,10 @@ import { TopbarData } from "src/app/modules/ui-kit/components/topbar/topbar.comp
 
 export const SUPER_ADMIN_MENU_DATA = [
         {
-            label: 'Home',
-            items:[
-                {label: 'Dashboard',icon: 'pi pi-fw pi-home', routerLink: ['/superadmin']}
-            ]
-        },
-        {
             label: 'Manage Admins',
             items: [
-                {label: 'Admins', icon: 'pi pi-fw pi-users', routerLink: ['/superadmin/admins']},
-                {label: 'Create Admin', icon: 'pi pi-fw pi-user-plus', routerLink: ['/superadmin/admins/create']}
+                {label: 'Admins', icon: 'pi pi-fw pi-users', routerLink: ['/admin']},
+                {label: 'Create Admin', icon: 'pi pi-fw pi-user-plus', routerLink: ['/admin/create']}
             ]
         }
 ]

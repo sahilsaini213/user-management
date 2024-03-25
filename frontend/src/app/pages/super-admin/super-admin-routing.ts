@@ -7,7 +7,7 @@ export const SUPER_ADMIN_ROUTES: Route[] = [
         path: '', component: SuperAdminComponent,
         children: [
             {path: '', component: AnalyticComponent},
-            {path: 'admins', loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)},
+            {path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)},
         ],
     }
 ];

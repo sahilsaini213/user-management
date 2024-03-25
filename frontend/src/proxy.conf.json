@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "https://hss-warehouse.web.app/api",
+      "target": "https://user-management.web.app/api",
       "secure": false,
       "changeOrigin": true,
       "logLevel": "debug",

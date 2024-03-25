@@ -11,11 +11,10 @@ import { QAvatar } from '../ui-kit/components/q-avatar/q-avatar.component';
 import { StringUtil } from 'src/app/utils/string.utils';
 import { environment } from 'src/environments/environment';
 import { getMe, loggeedInUser, loginWithPassword, lookupWithPhone, UpdateUserInfo } from 'src/mock-data/user';
-import { IWarehouse } from 'src/app/pages/employee/employee.model';
 
 export interface IMe {
   user: IUser,
-  warehouses?: IWarehouse[]
+  warehouses?: any[]
 }
 
 @Injectable({

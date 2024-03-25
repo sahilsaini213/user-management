@@ -6,8 +6,6 @@ import { RouteService } from 'src/app/service/route.service';
 import { DialogService } from 'src/app/service/dialog.service';
 import { IUser } from 'src/app/modules/q-auth/q-auth-model';
 import { QAvatar } from '../q-avatar/q-avatar.component';
-import { EmployeeService } from 'src/app/pages/employee/employee.service';
-import { IWarehouse } from 'src/app/pages/employee/employee.model';
 import { UserType } from 'src/app/consts/app.const';
 
 export interface TopbarData {
@@ -29,7 +27,7 @@ export class TopbarComponent implements OnInit, OnChanges {
   @Input() userType: UserType = UserType.EMPLOYEE;
   user: IUser;
   topBarNavAvatar: QAvatar;
-  defaultWarehouse: IWarehouse;
+  defaultWarehouse: any;
 
   defaultProfileItems: MenuItem[] = [
     {
@@ -56,29 +54,19 @@ export class TopbarComponent implements OnInit, OnChanges {
   constructor(
     private qAuthService: QAuthService,
     public routeService: RouteService,
-    private employeeService: EmployeeService
   ) { }
 
   async ngOnInit() {
     const {user} = await this.qAuthService.me();
     this.user = user;
     if(user.type === UserType.EMPLOYEE) {
-      this.employeeService.defaultWarehouseSelected$.subscribe( async (warehouse: IWarehouse) => {
-        this.defaultWarehouse = warehouse;
-        this.setAvatar();
-      });
-    } else {
       this.setAvatar();
     }
   }
 
   setAvatar() {
     let avatar: QAvatar = {};
-    if (this.defaultWarehouse) {
-      avatar = this.employeeService.getWarehouseAvatar(this.defaultWarehouse);
-    } else {
       avatar = this.qAuthService.getUserAvatar(this.user);
-    }
     this.topBarNavAvatar = avatar;
   }
 
@@ -97,12 +85,9 @@ export class TopbarComponent implements OnInit, OnChanges {
   onMenuItemClick({option}) {
     if (option?.command) {
       option.command();
-    } else if (option?.routerLink) {
-      if (this.userType === UserType.EMPLOYEE) {
-        this.routeService.navigateByURL(option.routerLink.replace(':warehouseId', this.defaultWarehouse.id));
-      } else {
+    } if (option?.routerLink) {
+     
         this.routeService.navigateByURL(option.routerLink);
       }
     }
   }
-}

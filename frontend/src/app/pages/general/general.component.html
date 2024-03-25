@@ -11,9 +11,7 @@
         <div class="layout-main">
             <router-outlet></router-outlet>
         </div>
-        <div class="layout-footer">
-            © HWIMS INC. 2023
-        </div>
+       
     </div>
         <q-theme (toggleMenu)="toggleMenu($event)" (configClick)="onConfigClick($event)"></q-theme>
         <div *ngIf="menuActiveMobile" class="layout-mask p-component-overlay"></div>

@@ -51,16 +51,6 @@
                         styleClass="mx-auto mr-2 badge capitalize {{admin.is_active}}">
                       </p-chip>
 
-                      <span *ngSwitchCase="'users_count'">
-                        <p-badge *ngIf="admin.users_count" class="flex" [value]="admin.users_count"
-                          styleClass="mx-auto badge"></p-badge>
-                      </span>
-
-                      <span *ngSwitchCase="'warehouse_count'">
-                        <p-badge *ngIf="admin.warehouse_count" class="flex" [value]="admin.warehouse_count"
-                          styleClass="mx-auto badge"></p-badge>
-                      </span>
-
                       <span *ngSwitchDefault>
                         {{admin[column.key]}}
                       </span>

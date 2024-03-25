@@ -27,8 +27,6 @@ export class AnalyticComponent implements OnInit, OnDestroy {
     columns: Partial<IUikitColumn>[] = [
         {key: 'id', label: 'Id', style: 'min-width:8rem;', type: 'numeric' },
         {key: 'first_name', label: 'Name', style: 'min-width:10rem;'},
-        {key: 'warehouse_count', label: 'Total Warehouses', style: 'min-width:10rem;'},
-        {key: 'users_count', label: 'Total Users', style: 'min-width:10rem;'},
         {key: 'phone_number', label: 'Phone Number', style: 'min-width:10rem;', hasSorting: false, hasFilter: false},
         {key: 'status', label: 'Status', style: 'min-width:10rem;', hasCenter: true, options: USERS_STATUSES},
       ];
@@ -37,11 +35,6 @@ export class AnalyticComponent implements OnInit, OnDestroy {
         heading: "Admins",
         key: this.totalRecords,
         icon: "pi pi-users"
-    },
-    {
-        heading: "Warehouses",
-        key: this.total_warehouses,
-        icon: "pi pi-building"
     }]
 
     constructor(
